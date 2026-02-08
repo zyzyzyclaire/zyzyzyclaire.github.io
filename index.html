@@ -96,18 +96,24 @@
                         <h3 class="skill-category-title">Backend</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Flask</span>
                             <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">SQLAlchemy</span>
                             <span class="skill-tag">MySQL</span>
                             <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Celery</span>
+                            <span class="skill-tag">JWT</span>
+                            <span class="skill-tag">OAuth</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3 class="skill-category-title">DevOps</h3>
+                        <h3 class="skill-category-title">DevOps / Cloud</h3>
                         <div class="skill-tags">
-                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">AWS Lambda</span>
+                            <span class="skill-tag">AWS S3</span>
+                            <span class="skill-tag">AWS EB</span>
                             <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Sentry</span>
                             <span class="skill-tag">Linux</span>
                         </div>
                     </div>
@@ -130,25 +136,126 @@
                 <h2 class="section-title">Work Projects</h2>
                 <div class="section-content">
 
-                    <!-- 히어로웍스 프로젝트 -->
+                    <!-- 프라이머스 — 학습 서비스 백엔드 API -->
                     <div class="project-item">
                         <div class="project-header">
-                            <h3 class="project-name">서비스 성능 개선 및 렌더링 속도 최적화</h3>
-                            <span class="period">2022.10 - 2022.12</span>
+                            <h3 class="project-name">소셜 로그인 연동 및 인증/보안 시스템 구축</h3>
+                            <span class="period">2024.03 - 2024.09</span>
                         </div>
-                        <span class="project-company">히어로웍스</span>
+                        <span class="project-company">프라이머스</span>
                         <ul class="project-detail-list">
-                            <li>페이지 렌더링 시 최대 <strong>30초</strong> 소요되는 성능 병목 현상 분석</li>
-                            <li>비효율적인 N+1 쿼리 및 중복 데이터 처리 로직 식별</li>
-                            <li>쿼리 최적화 및 로직 구조 개선을 통해 <strong>응답 시간 30초 → 1초 이하</strong>로 단축</li>
+                            <li><strong>Google, Kakao, Naver</strong> 3개 플랫폼 OAuth 소셜 로그인 연동</li>
+                            <li><strong>JWT + bcrypt</strong> 기반 인증/인가 구조 설계 (Access Token, Refresh Token)</li>
+                            <li>사용자 <strong>기기 등록/변경 횟수 제한</strong> 시스템 구현으로 불법 공유 방지 (월별 자동 리셋)</li>
+                            <li><strong>다국어(한/영/몽골어) 에러 메시지</strong> 시스템 구현 — JWT 토큰 내 국가 정보 기반 자동 분기</li>
+                            <li>47개 이상의 커스텀 예외 클래스 계층 구조 설계</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">OAuth</span>
+                            <span class="tech-tag">bcrypt</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">학습 콘텐츠 관리 및 사용자 학습 시스템 개발</h3>
+                            <span class="period">2023.12 - 2024.06</span>
+                        </div>
+                        <span class="project-company">프라이머스</span>
+                        <ul class="project-detail-list">
+                            <li>path string 기반 <strong>계층형 폴더 시스템</strong> 설계 — 폴더 이동 시 하위 항목 경로 일괄 업데이트 (14개 엔드포인트)</li>
+                            <li>태그 기반 <strong>오답노트 시스템</strong> 구현 — 틀린 문제 분류, 커스텀 순서 재풀이, 원본과 별도 정답률 추적</li>
+                            <li><strong>DIY 시험 생성 시스템</strong> — 사용자 문제 선택 → 랜덤 출제 → 자동 채점 및 점수 추적</li>
+                            <li><strong>단어장 시스템</strong> 개발 — 문제-단어 연동 및 다국어 번역 지원</li>
+                            <li>커스텀 <strong>PDF/오디오 뷰어</strong> — 사용자 업로드 파일 관리, 기기별 파일 경로 분리, 페이지별 주석 저장</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">AWS S3</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">서버리스 백엔드 아키텍처 설계 및 시스템 구축</h3>
+                            <span class="period">2023.08 - 2024.03</span>
+                        </div>
+                        <span class="project-company">프라이머스</span>
+                        <ul class="project-detail-list">
+                            <li>서비스 <strong>초기 기획 단계부터 참여</strong>하여 30개 이상 테이블의 데이터 모델 및 아키텍처 설계</li>
+                            <li>FastAPI 기반 <strong>109개 REST API</strong> 엔드포인트 개발 (14개 라우트 모듈)</li>
+                            <li><strong>S3 Presigned URL</strong> 기반 시간 제한 파일 접근 제어 및 벌크 삭제 최적화 (AWS 1000개 제한 대응)</li>
+                            <li><strong>Request ID 기반 요청 추적 미들웨어</strong> 구현 및 <strong>Sentry</strong> 연동으로 프로덕션 에러 모니터링</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">AWS Lambda</span>
+                            <span class="tech-tag">Mangum</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                            <span class="tech-tag">AWS S3</span>
+                            <span class="tech-tag">Sentry</span>
+                        </div>
+                    </div>
+
+                    <!-- 프라이머스 — 관리자 시스템 -->
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">관리자 시스템 — 미디어 처리 및 콘텐츠 관리 도구 구축</h3>
+                            <span class="period">2023.10 - 2024.09</span>
+                        </div>
+                        <span class="project-company">프라이머스</span>
+                        <ul class="project-detail-list">
+                            <li><strong>오디오 자동 전사 파이프라인</strong> 구축 — pydub 기반 무음 감지(-50dB) 후 음성 구간 추출, <strong>한/영 이중 언어 STT</strong> 자동 변환</li>
+                            <li><strong>대용량 PDF 스트리밍 처리</strong> — 메모리 효율적 페이지 분할 및 썸네일 자동 생성 (OOM 방지)</li>
+                            <li><strong>비트 연산 기반 다중 정답 인코딩</strong> 시스템 설계 — 객관식/O·X 등 6가지 답안 유형을 바이너리 값으로 효율 저장</li>
+                            <li><strong>다국어 단어장 관리</strong> 도구 — 좌표 기반 단어 위치 매핑, 언어쌍 오버라이드 지원 (한/영/몽골어)</li>
+                            <li><strong>연쇄 삭제 및 참조 무결성 관리</strong> — 사용자 데이터 사전 검증 후 6단계 순차 삭제 + S3 파일 정리</li>
+                            <li><strong>시리얼 키</strong> 라이선스 발급 및 사용 추적 시스템</li>
                         </ul>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQLAlchemy</span>
                             <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">pydub</span>
+                            <span class="tech-tag">SpeechRecognition</span>
+                            <span class="tech-tag">PyPDF2</span>
+                            <span class="tech-tag">AWS S3</span>
                         </div>
                     </div>
 
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">관리자 시스템 — 사용자 활동 분석 대시보드</h3>
+                            <span class="period">2024.06 - 2024.12</span>
+                        </div>
+                        <span class="project-company">프라이머스</span>
+                        <ul class="project-detail-list">
+                            <li><strong>8가지 핵심 지표</strong>(가입, 재방문, 문제풀이, 오답노트, 시험, 단어장 등) 일별 자동 집계 시스템 구축</li>
+                            <li><strong>일별/주별/월별 시계열 집계</strong> API 설계 — ISO 주 기반 그룹핑 및 월별 롤업 처리</li>
+                            <li>특정 사용자의 <strong>전체 활동 타임라인 조회</strong> 기능 구현 (로그인, 문제풀이, 시험 생성 등 시간순 추적)</li>
+                            <li>각 지표별 <strong>상세 드릴다운</strong> API — 날짜 선택 시 해당 사용자 목록 및 활동 내역 제공</li>
+                            <li>UTC → KST <strong>타임존 변환</strong> 처리 및 전일 대비 비교 데이터 제공</li>
+                            <li><strong>3단계 역할 기반 접근 제어(RBAC)</strong> — SuperAdmin / Admin / Alba 권한 분리</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">matplotlib</span>
+                        </div>
+                    </div>
+
+                    <!-- 히어로웍스 프로젝트 -->
                     <div class="project-item">
                         <div class="project-header">
                             <h3 class="project-name">데이터베이스 마이그레이션</h3>
@@ -168,47 +275,21 @@
                         </div>
                     </div>
 
-                    <!-- 프라이머스 프로젝트 -->
                     <div class="project-item">
                         <div class="project-header">
-                            <h3 class="project-name">학습 서비스 백엔드 및 관리자 시스템 구축</h3>
-                            <span class="period">2023.08 - 2024.06</span>
+                            <h3 class="project-name">서비스 성능 개선 및 렌더링 속도 최적화</h3>
+                            <span class="period">2022.10 - 2022.12</span>
                         </div>
-                        <span class="project-company">프라이머스</span>
+                        <span class="project-company">히어로웍스</span>
                         <ul class="project-detail-list">
-                            <li>서비스 <strong>초기 기획 단계부터 참여</strong>하여 데이터 모델 및 아키텍처 설계</li>
-                            <li><strong>FastAPI</strong> 기반 핵심 API 및 백엔드 기능 개발</li>
-                            <li><strong>JWT 기반 인증 구조</strong> 설계 및 적용</li>
-                            <li><strong>AWS S3</strong> 기반 파일 업로드 및 저장 구조 설계</li>
-                            <li>운영 효율을 위한 관리자 페이지 구축</li>
+                            <li>페이지 렌더링 시 최대 <strong>30초</strong> 소요되는 성능 병목 현상 분석</li>
+                            <li>비효율적인 N+1 쿼리 및 중복 데이터 처리 로직 식별</li>
+                            <li>쿼리 최적화 및 로직 구조 개선을 통해 <strong>응답 시간 30초 → 1초 이하</strong>로 단축</li>
                         </ul>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">Flask</span>
                             <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">AWS S3</span>
-                            <span class="tech-tag">JWT</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">STT / OCR 기능 연동 학습 서비스</h3>
-                            <span class="period">2024.01 - 2025.03</span>
-                        </div>
-                        <span class="project-company">프라이머스</span>
-                        <ul class="project-detail-list">
-                            <li>학습 편의성 향상을 위한 <strong>STT(음성인식)</strong> 기능 백엔드 연동</li>
-                            <li><strong>OCR(문자인식)</strong> 기능 통합으로 이미지 기반 학습 입력 지원</li>
-                            <li>사용자 입력 데이터를 학습 흐름에 자연스럽게 통합하는 API 설계</li>
-                            <li>AI 기능 호출 최적화 및 에러 핸들링 구현</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">AWS</span>
-                            <span class="tech-tag">STT</span>
-                            <span class="tech-tag">OCR</span>
                         </div>
                     </div>
 
@@ -224,60 +305,8 @@
 
                     <div class="project-item">
                         <div class="project-header">
-                            <h3 class="project-name">모바일 청첩장</h3>
-                            <span class="period">2022.12 - 진행중</span>
-                        </div>
-                        <p class="project-subtitle">디지털 청첩장 생성 웹 서비스 | 프론트엔드 전담</p>
-                        <ul class="project-detail-list">
-                            <li>프론트엔드 역량 확장을 위해 UI/UX 전체 구현을 주도</li>
-                            <li><strong>Swiper.js</strong>를 활용한 갤러리 슬라이더 구현, 터치 제스처 및 반응형 대응</li>
-                            <li><strong>Cropper.js</strong> 기반 이미지 크롭 기능 개발 (원본/썸네일 분리 저장)</li>
-                            <li><strong>Naver Maps API</strong> 연동으로 주소 입력 시 자동 지오코딩 및 지도 표시</li>
-                            <li>모바일 퍼스트 반응형 레이아웃 설계 및 CSS 애니메이션 적용</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Swiper.js</span>
-                            <span class="tech-tag">Cropper.js</span>
-                            <span class="tech-tag">Naver Maps API</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/zyzyzyclaire/invitation_wedding_template" target="_blank" rel="noopener">GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">OrderAndGo</h3>
-                            <span class="period">2023 - 진행중</span>
-                        </div>
-                        <p class="project-subtitle">음식점 테이블 주문 및 POS 시스템 | 백엔드 개발</p>
-                        <ul class="project-detail-list">
-                            <li><strong>결제 시스템 DB 설계</strong>: 주문-결제-정산 흐름을 위한 테이블 구조 설계 (TableOrderList → Order → Payment)</li>
-                            <li>더치페이, 할인/추가요금 등 복잡한 정산 로직을 처리하는 <strong>결제 API</strong> 구현</li>
-                            <li>메뉴 옵션(사이즈, 토핑 등)을 <strong>JSON 기반 동적 구조</strong>로 설계하여 유연성 확보</li>
-                            <li><strong>Flask-SocketIO</strong>를 활용한 POS 클라이언트 실시간 주문 동기화</li>
-                            <li>관리자 → 매장 → 테이블 계층 구조의 <strong>다중 사용자 인증 체계</strong> 구현</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">WebSocket</span>
-                            <span class="tech-tag">Google OAuth</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/zyzyzyclaire/orderandgo" target="_blank" rel="noopener">GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
                             <h3 class="project-name">HeyVoca</h3>
-                            <span class="period">2024 - 진행중</span>
+                            <span class="period">2025 - 진행중</span>
                         </div>
                         <p class="project-subtitle">영어 단어 학습 앱 (Android/iOS 출시) | 백엔드 및 관리자 시스템 전담</p>
                         <ul class="project-detail-list">
@@ -297,7 +326,110 @@
                             <span class="tech-tag">FCM</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/zyzyzyclaire/heyvoca" target="_blank" rel="noopener">GitHub</a>
+                            <a href="https://github.com/whrksp126/heyvoca_admin" target="_blank" rel="noopener">GitHub (Admin)</a>
+                            <span class="separator">|</span>
+                            <a href="https://github.com/whrksp126/heyvoca_back" target="_blank" rel="noopener">GitHub (Backend)</a>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">OrderAndGo</h3>
+                            <span class="period">2024 - 진행중</span>
+                        </div>
+                        <p class="project-subtitle">음식점 테이블 주문 및 POS 시스템 | 백엔드 개발</p>
+                        <ul class="project-detail-list">
+                            <li><strong>결제 시스템 DB 설계</strong>: 주문-결제-정산 흐름을 위한 테이블 구조 설계 (TableOrderList → Order → Payment)</li>
+                            <li>더치페이, 할인/추가요금 등 복잡한 정산 로직을 처리하는 <strong>결제 API</strong> 구현</li>
+                            <li>메뉴 옵션(사이즈, 토핑 등)을 <strong>JSON 기반 동적 구조</strong>로 설계하여 유연성 확보</li>
+                            <li><strong>Flask-SocketIO</strong>를 활용한 POS 클라이언트 실시간 주문 동기화</li>
+                            <li>관리자 → 매장 → 테이블 계층 구조의 <strong>다중 사용자 인증 체계</strong> 구현</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">WebSocket</span>
+                            <span class="tech-tag">Google OAuth</span>
+                        </div>
+                        <div class="project-links">
+                            <!-- <a href="https://github.com/zyzyzyclaire/orderandgo" target="_blank" rel="noopener">GitHub</a> -->
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h3 class="project-name">모바일 청첩장</h3>
+                            <span class="period">2023.12 - 진행중</span>
+                        </div>
+                        <p class="project-subtitle">디지털 청첩장 생성 웹 서비스 | 프론트엔드 전담</p>
+                        <ul class="project-detail-list">
+                            <li>프론트엔드 역량 확장을 위해 UI/UX 전체 구현을 주도</li>
+                            <li><strong>Swiper.js</strong>를 활용한 갤러리 슬라이더 구현, 터치 제스처 및 반응형 대응</li>
+                            <li><strong>Cropper.js</strong> 기반 이미지 크롭 기능 개발 (원본/썸네일 분리 저장)</li>
+                            <li><strong>Naver Maps API</strong> 연동으로 주소 입력 시 자동 지오코딩 및 지도 표시</li>
+                            <li>모바일 퍼스트 반응형 레이아웃 설계 및 CSS 애니메이션 적용</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Swiper.js</span>
+                            <span class="tech-tag">Cropper.js</span>
+                            <span class="tech-tag">Naver Maps API</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <!-- <a href="https://github.com/zyzyzyclaire/invitation_wedding_template" target="_blank" rel="noopener">GitHub</a> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Training Projects -->
+        <section class="section" id="training-projects">
+            <div class="container">
+                <h2 class="section-title">Training Projects</h2>
+                <div class="section-content">
+
+                    <div class="project-item training-project">
+                        <div class="project-header">
+                            <h3 class="project-name">Spring 기반 영화 예매 사이트</h3>
+                            <span class="period">2022.05 - 2022.06</span>
+                        </div>
+                        <p class="project-subtitle">교육 과정 팀 프로젝트 (5인) · 백엔드/DB 설계 및 구현 담당</p>
+                        <ul class="project-detail-list">
+                            <li><strong>Spring MVC 구조 기반</strong> 백엔드 아키텍처 설계</li>
+                            <li>영화 조회, 예매, 관리자 기능 등 <strong>핵심 API 및 로직 구현</strong></li>
+                            <li>Oracle DB 스키마 설계 및 데이터 흐름 정의</li>
+                            <li>요청–응답 흐름 및 컨트롤러–서비스–DAO 구조 설계 경험</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Framework</span>
+                            <span class="tech-tag">Oracle DB</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item training-project">
+                        <div class="project-header">
+                            <h3 class="project-name">JSP 쇼핑몰 웹 애플리케이션</h3>
+                            <span class="period">2022.04 - 2022.05</span>
+                        </div>
+                        <p class="project-subtitle">교육 과정 팀 프로젝트 (5인) · 백엔드 및 DB 설계 주도</p>
+                        <ul class="project-detail-list">
+                            <li>전체 서비스 <strong>DB 구조 설계 및 테이블 관계 정의</strong></li>
+                            <li>회원, 상품, 장바구니, 주문 관리 등 <strong>핵심 백엔드 로직 구현</strong></li>
+                            <li>JSP 기반 서버 사이드 로직 및 Oracle DB 연동</li>
+                            <li>팀 내 백엔드 파트 전담으로 기능 구현 및 통합 담당</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">JSP</span>
+                            <span class="tech-tag">Oracle DB</span>
+                            <span class="tech-tag">Tomcat</span>
                         </div>
                     </div>
 
@@ -366,7 +498,7 @@
                         </li> -->
                         <li>
                             <strong>사이드 프로젝트 팀 활동</strong>
-                            <span class="activity-period">2022.12 - 현재</span>
+                            <span class="activity-period">2023.12 - 현재</span>
                             <p>개발자 2명으로 시작하여 현재 개발자, 디자이너, 기획자가 함께하는 팀으로 성장.
                             <br>모바일 청첩장, OrderAndGo, HeyVoca 등 다양한 사이드 프로젝트 진행 중</p>
                         </li>
