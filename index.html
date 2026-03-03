@@ -59,12 +59,14 @@
                         </div>
                         <p class="position">Backend Developer</p>
                         <ul class="experience-list">
-                            <li>학습 서비스 초기 기획 단계부터 참여하여 데이터 모델 및 아키텍처 설계</li>
-                            <li>Python(FastAPI) 기반 핵심 API 및 백엔드 기능 개발</li>
-                            <li>STT, OCR 등 AI 기능 연동 백엔드 구현</li>
-                            <li>JWT 기반 인증 구조 설계 및 적용</li>
-                            <li>AWS S3 기반 파일 업로드 및 저장 구조 설계</li>
-                            <li>관리자 페이지 구축 및 운영 기능 개발</li>
+                            <li>서비스 초기 기획 단계부터 참여, <strong>40개 이상 테이블</strong>의 데이터 모델 및 아키텍처 설계</li>
+                            <li>FastAPI 기반 REST API 개발 및 운영 (100+ 엔드포인트)</li>
+                            <li>AWS Lambda + S3 기반 서버리스 아키텍처 설계 및 운영</li>
+                            <li>Request ID 기반 요청 추적 미들웨어 구현 및 Sentry 에러 모니터링 연동</li>
+                            <li>for 루프 내 건별 DB 조회를 루프 전 일괄 조회 후 딕셔너리 매핑으로 개선 — 반복 호출 제거로 응답 속도 단축</li>
+                            <li>Google·Kakao·Naver OAuth 소셜 로그인 연동 및 JWT 인증 구조 설계</li>
+                            <li>관리자 대시보드 구축 — <strong>8가지 핵심 지표</strong> 일별 자동 집계, 3단계 RBAC 권한 분리</li>
+                            <li>오디오 자동 전사 파이프라인 — 음량 기반 구간 분할 및 한·영 STT 자동 변환</li>
                         </ul>
                     </div>
 
@@ -75,10 +77,10 @@
                         </div>
                         <p class="position">Backend Developer</p>
                         <ul class="experience-list">
-                            <li>Python(Flask) 기반 웹 서비스 백엔드 개발 및 운영</li>
-                            <li>페이지 렌더링 속도 개선을 통해 응답 시간 30초 → 1초 이하로 단축</li>
+                            <li>데이터 엑셀 출력 <strong>성능 개선 — 응답 시간 60초 → 5초 이하</strong>로 단축</li>
+                            <li><strong>DynamoDB → MySQL</strong> 데이터베이스 마이그레이션 수행</li>
+                            <li>데이터 모델 재설계 및 마이그레이션 스크립트 작성</li>
                             <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
-                            <li>DynamoDB → MySQL 데이터베이스 마이그레이션 수행</li>
                             <li>관리자 페이지 구축 및 운영 기능 개발</li>
                         </ul>
                     </div>
@@ -100,10 +102,13 @@
                             <span class="skill-tag">Flask</span>
                             <span class="skill-tag">SQLAlchemy</span>
                             <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Oracle</span>
+                            <span class="skill-tag">DynamoDB</span>
                             <span class="skill-tag">Redis</span>
                             <span class="skill-tag">Celery</span>
                             <span class="skill-tag">JWT</span>
                             <span class="skill-tag">OAuth</span>
+                            <span class="skill-tag">bcrypt</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -188,10 +193,11 @@
                         </div>
                         <span class="project-company">프라이머스</span>
                         <ul class="project-detail-list">
-                            <li>서비스 <strong>초기 기획 단계부터 참여</strong>하여 30개 이상 테이블의 데이터 모델 및 아키텍처 설계</li>
+                            <li>서비스 <strong>초기 기획 단계부터 참여</strong>하여 <strong>40개 이상 테이블</strong>의 데이터 모델 및 아키텍처 설계</li>
                             <li>FastAPI 기반 <strong>109개 REST API</strong> 엔드포인트 개발 (14개 라우트 모듈)</li>
                             <li><strong>S3 Presigned URL</strong> 기반 시간 제한 파일 접근 제어 및 벌크 삭제 최적화 (AWS 1000개 제한 대응)</li>
                             <li><strong>Request ID 기반 요청 추적 미들웨어</strong> 구현 및 <strong>Sentry</strong> 연동으로 프로덕션 에러 모니터링</li>
+                            <li>for 루프 내 건별 DB 조회를 루프 전 일괄 조회 후 딕셔너리 매핑으로 개선 — 반복 호출 제거로 응답 속도 단축</li>
                         </ul>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
@@ -312,7 +318,6 @@
                         <ul class="project-detail-list">
                             <li><strong>전체 DB 스키마 설계</strong>: 단어-뜻-예문 관계 테이블, 사용자 학습 데이터, 북스토어 구조 등 30개 이상 테이블 설계</li>
                             <li><strong>엑셀 대량 업로드</strong> 기능 구현: pandas로 엑셀 파싱 → 단어/뜻/예문 자동 분리 → 관계 테이블 일괄 INSERT</li>
-                            <li>한글 초성 검색 구현: 유니코드 범위 계산을 활용한 <strong>REGEXP 기반 초성/글자 혼합 검색</strong></li>
                             <li><strong>Celery + Redis</strong>로 매일 정해진 시간에 FCM 푸시 알림 자동 발송</li>
                             <li>관리자 시스템 REST API 설계 및 <strong>AWS Elastic Beanstalk</strong> 배포</li>
                         </ul>
@@ -341,9 +346,9 @@
                         <ul class="project-detail-list">
                             <li><strong>결제 시스템 DB 설계</strong>: 주문-결제-정산 흐름을 위한 테이블 구조 설계 (TableOrderList → Order → Payment)</li>
                             <li>더치페이, 할인/추가요금 등 복잡한 정산 로직을 처리하는 <strong>결제 API</strong> 구현</li>
-                            <li>메뉴 옵션(사이즈, 토핑 등)을 <strong>JSON 기반 동적 구조</strong>로 설계하여 유연성 확보</li>
-                            <li><strong>Flask-SocketIO</strong>를 활용한 POS 클라이언트 실시간 주문 동기화</li>
-                            <li>관리자 → 매장 → 테이블 계층 구조의 <strong>다중 사용자 인증 체계</strong> 구현</li>
+                            <li>테이블 합석/이동 — 테이블 변경 시 Order·TableOrderList의 table_id 일괄 업데이트</li>
+                            <li><strong>Google OAuth2</strong> 기반 매장 로그인 연동</li>
+                            <li>메뉴·테이블 page/position 관리 — 관리자 화면 위치 변경 시 DB 즉시 반영</li>
                         </ul>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>

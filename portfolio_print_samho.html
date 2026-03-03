@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    color: #1a1a1a;
+    font-size: 9pt;
+    line-height: 1.55;
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ===== PAGE 1 ===== */
+  .page1 {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: white;
+    padding: 28px 30px 24px 30px;
+    flex-shrink: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 14px;
+  }
+
+  .header h1 {
+    font-size: 24pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .header .doc-title {
+    font-size: 10pt;
+    font-weight: 300;
+    color: #b0c4de;
+    margin-top: 2px;
+  }
+
+  .header-contact {
+    text-align: right;
+    font-size: 8pt;
+    color: #d0d8e8;
+    line-height: 1.75;
+  }
+
+  .header-summary {
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 8.5pt;
+    color: #c8d6e5;
+    line-height: 1.78;
+  }
+
+  .body-layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: 210px;
+    min-width: 210px;
+    background: #f4f6f9;
+    padding: 22px 18px;
+    border-right: 1px solid #e0e4ea;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .sidebar-section {
+    margin-bottom: 20px;
+  }
+
+  .sidebar-section h3 {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #0f3460;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 11px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #0f3460;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .skill-category { margin-bottom: 9px; }
+
+  .skill-label {
+    font-size: 7pt;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  .skill-tag {
+    background: #e8edf3;
+    color: #2c3e6b;
+    font-size: 7pt;
+    padding: 1px 5px;
+    border-radius: 3px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cert-item, .activity-item { margin-bottom: 12px; }
+
+  .cert-name, .activity-name {
+    font-size: 8pt;
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+
+  .cert-org, .activity-detail { font-size: 7pt; color: #666; }
+  .cert-date, .activity-date { font-size: 7pt; color: #999; }
+
+
+
+  /* ===== MAIN ===== */
+  .main {
+    flex: 1;
+    padding: 22px 26px;
+    overflow: hidden;
+  }
+
+  .section { margin-bottom: 20px; }
+
+  .section-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #0f3460;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #0f3460;
+    letter-spacing: 0.5px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .exp-block { margin-bottom: 24px; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .exp-company { font-size: 10pt; font-weight: 700; color: #1a1a2e; }
+  .exp-period { font-size: 7.5pt; color: #888; }
+  .exp-role { font-size: 8pt; color: #555; margin-bottom: 10px; }
+
+  .exp-items { list-style: none; padding: 0; }
+
+  .exp-items li {
+    font-size: 8.5pt;
+    line-height: 1.72;
+    padding-left: 11px;
+    position: relative;
+    margin-bottom: 2.5px;
+    color: #333;
+  }
+
+  .exp-items li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: #0f3460;
+    font-weight: 700;
+  }
+
+  /* ===== 강점 요약 박스 ===== */
+  .strengths-box {
+    margin-top: 22px;
+    border: 1.5px solid #d0d8ea;
+    border-radius: 6px;
+    padding: 16px 18px;
+    background: #f8fafd;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .strengths-box-title {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #0f3460;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 12px;
+    padding-bottom: 7px;
+    border-bottom: 1.5px solid #d0d8ea;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px 18px;
+  }
+
+  .strength-item {}
+
+  .strength-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #0f3460;
+    margin-bottom: 2px;
+  }
+
+  .strength-desc {
+    font-size: 7.5pt;
+    color: #444;
+    line-height: 1.55;
+  }
+
+  /* ===== PAGE 2 / 3 ===== */
+  .page2, .page3 {
+    width: 210mm;
+    min-height: 297mm;
+    page-break-before: always;
+  }
+
+  .page2-header, .page3-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: white;
+    padding: 12px 30px;
+    font-size: 8pt;
+    display: flex;
+    justify-content: space-between;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page2-content, .page3-content {
+    padding: 22px 30px;
+  }
+
+  .p2-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 24px;
+  }
+
+  .p2-col {}
+
+  .project-block { margin-bottom: 20px; }
+
+  .project-title {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 3px;
+  }
+
+  .project-period { font-size: 7pt; color: #999; margin-bottom: 6px; }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-bottom: 7px;
+  }
+
+  .project-tag {
+    background: #eef1f7;
+    color: #3a5a8c;
+    font-size: 6.5pt;
+    padding: 1px 5px;
+    border-radius: 2px;
+    font-weight: 500;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .p2-section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #0f3460;
+    margin-bottom: 14px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #0f3460;
+    letter-spacing: 0.5px;
+    grid-column: 1 / -1;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: #e0e4ea;
+    margin: 10px 0 18px 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page1">
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <h1>이근지</h1>
+        <div class="doc-title">경력기술서</div>
+      </div>
+      <div class="header-contact">
+        kunji1177@gmail.com<br>
+        github.com/zyzyzyclaire
+      </div>
+    </div>
+    <div class="header-summary">
+      약 3년 7개월간 실서비스를 설계·운영하며, 다수의 관계형 데이터베이스 스키마 설계 및 DynamoDB → MySQL 마이그레이션,
+      시스템 성능 개선 등 데이터 정합성과 운영 안정성을 중심으로 업무를 수행해 왔습니다.
+      ERP 운영, 사내 IT 인프라 지원, 데이터 관리 업무에 기여할 수 있습니다.
+    </div>
+  </div>
+
+  <div class="body-layout">
+
+    <!-- 사이드바: Skills / Certs / Activities + 하단에 히어로웍스 -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <h3>Skills</h3>
+        <div class="skill-category">
+          <div class="skill-label">Database</div>
+          <div class="skill-tags">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Oracle</span>
+            <span class="skill-tag">DynamoDB</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-label">Language</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-label">Framework</div>
+          <div class="skill-tags">
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">SQLAlchemy</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-label">Cloud / Infra</div>
+          <div class="skill-tags">
+            <span class="skill-tag">AWS Lambda</span>
+            <span class="skill-tag">AWS S3</span>
+            <span class="skill-tag">AWS EB</span>
+            <span class="skill-tag">Sentry</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-label">Auth / Security</div>
+          <div class="skill-tags">
+            <span class="skill-tag">JWT</span>
+            <span class="skill-tag">OAuth</span>
+            <span class="skill-tag">bcrypt</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-label">Collaboration</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Notion</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Certifications</h3>
+        <div class="cert-item">
+          <div class="cert-name">정보처리기사</div>
+          <div class="cert-org">한국산업인력공단</div>
+          <div class="cert-date">2024.09</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">SQL개발자 (SQLD)</div>
+          <div class="cert-org">한국데이터산업진흥원</div>
+          <div class="cert-date">2022.09</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Activities</h3>
+        <div class="activity-item">
+          <div class="activity-name">사이드 프로젝트 팀</div>
+          <div class="activity-date">2023.12 - 현재</div>
+          <div class="activity-detail">HeyVoca(Android/iOS 출시), OrderAndGo, 모바일 청첩장 등 다수 프로젝트 진행</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-name">호주 워킹홀리데이</div>
+          <div class="activity-date">2017.08 - 2018.08</div>
+          <div class="activity-detail">다국적 환경에서의 영어 의사소통 경험</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 메인: 프라이머스만 -->
+    <div class="main">
+      <div class="section">
+        <div class="section-title">EXPERIENCE</div>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-company">프라이머스</span>
+            <span class="exp-period">2023.07 - 현재 (2년 7개월+)</span>
+          </div>
+          <div class="exp-role">Backend Developer</div>
+          <ul class="exp-items">
+            <li>서비스 초기 기획 단계부터 참여, <strong>40개 이상 테이블</strong>의 데이터 모델 및 아키텍처 설계</li>
+            <li>FastAPI 기반 REST API 개발 및 운영 (100+ 엔드포인트)</li>                                                                 
+            <li>AWS Lambda + S3 기반 서버리스 아키텍처 설계 및 운영</li>
+            <li>Request ID 기반 요청 추적 미들웨어 구현 및 <strong>Sentry 에러 모니터링</strong> 연동</li>
+            <li>for 루프 내 건별 DB 조회를 루프 전 일괄 조회 후 딕셔너리 매핑으로 개선 — 반복 호출 제거로 응답 속도 단축</li>
+            <li>path string 기반 계층형 폴더 시스템 설계 — 이동 시 하위 항목 경로 일괄 업데이트</li>
+            <li>시리얼 키 라이선스 발급 및 사용 추적 시스템 구현</li>
+            <li>Google·Kakao·Naver OAuth 소셜 로그인 연동 및 JWT 인증 구조 설계</li>
+            <!-- 여기서부터 adm -->
+            <!-- 인증 / 권한 -->
+            <li>3단계 역할 기반 접근 제어(RBAC) — SuperAdmin / Admin / Alba 권한 분리</li>                                             
+            <!-- 관리자 대시보드 / 통계 -->
+            <li>관리자 대시보드 구축 — <strong>8가지 핵심 지표</strong>(가입, 재방문, 문제풀이 등) 일별 자동 집계</li>
+            <li>일별/주별/월별 시계열 집계 API — ISO 주 기반 그룹핑, 월별 롤업 및 UTC→KST 변환 처리, 전일 대비 비교 데이터 제공</li>   
+            <!-- 콘텐츠 관리 -->
+            <li>오디오 파일 음량 기반 구간 자동 분할 및 Google Speech API 연동 — 한·영 STT 자동 변환 구현</li>
+            <li>복수 선택 답안 비트마스킹 인코딩 설계 — 정수 단일 컬럼에 다중 답안 압축 저장</li>
+            <!-- 데이터 관리 -->
+            <li>워크북 삭제 시 연쇄 삭제 및 참조 무결성 관리 — 6단계 순차 삭제 + S3 파일 정리</li>
+            <li>시리얼 키 라이선스 발급 및 사용 추적 시스템 구현</li>
+          </ul>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-company">히어로웍스</span>
+            <span class="exp-period">2022.07 - 2023.07 (1년)</span>
+          </div>
+          <div class="exp-role">Backend Developer</div>
+          <ul class="exp-items">
+            <li>데이터 엑셀 출력 <strong>성능 개선 — 응답 시간 60초 → 5초 이하</strong>로 단축</li>
+            <li><strong>DynamoDB → MySQL</strong> 데이터베이스 마이그레이션 수행</li>
+            <li>데이터 모델 재설계 및 마이그레이션 스크립트 작성</li>
+            <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
+            <li>관리자 페이지 구축 및 운영 기능 개발</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 강점 요약 박스 -->
+      <div class="strengths-box">
+        <div class="strengths-box-title">Core Strengths</div>
+        <div class="strengths-grid">
+          <div class="strength-item">
+            <div class="strength-label">📐 DB 설계 · 마이그레이션</div>
+            <div class="strength-desc">30개 이상 테이블 설계 경험, DynamoDB → MySQL 마이그레이션 주도 및 데이터 정합성 유지</div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-label">⚡ 성능 최적화</div>
+            <div class="strength-desc">대량 데이터 출력 로직 개선, 반복 조회 구조 제거, 응답 시간 30초 → 1초 수준 단축</div>
+          </div>
+          <div class="strength-item">
+            <div class="strength-label">🔒 인증 · 보안 설계</div>
+            <div class="strength-desc">JWT + OAuth 소셜 로그인 3개 플랫폼 연동, RBAC 권한 분리, 기기 제한 불법 공유 방지</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: 프라이머스 프로젝트 상세 -->
+<div class="page2">
+  <div class="page2-header">
+    <span>이근지 · 경력기술서</span>
+    <span>kunji1177@gmail.com · github.com/zyzyzyclaire</span>
+  </div>
+
+  <div class="page2-content">
+    <div class="p2-grid">
+
+      <div class="p2-section-title">주요 프로젝트 상세 — 프라이머스</div>
+
+      <!-- 왼쪽 컬럼 -->
+      <div class="p2-col">
+        <div class="project-block">
+          <div class="project-title">서버리스 백엔드 아키텍처 설계 및 시스템 구축</div>
+          <div class="project-period">2023.08 - 2024.03</div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">AWS Lambda</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">SQLAlchemy</span>
+            <span class="project-tag">AWS S3</span>
+            <span class="project-tag">Sentry</span>
+          </div>
+          <ul class="exp-items">
+            <li>서비스 초기 기획 단계부터 참여, <strong>40개 이상 테이블</strong> 데이터 모델 및 아키텍처 설계</li>
+            <li>FastAPI 기반 109개 REST API 엔드포인트 개발 (14개 라우트 모듈)</li>
+            <li>S3 Presigned URL 기반 시간 제한 파일 접근 제어 및 벌크 삭제 최적화</li>
+            <li>Request ID 기반 요청 추적 미들웨어 및 Sentry 프로덕션 에러 모니터링</li>
+            <li>for 루프 내 건별 DB 조회를 루프 전 일괄 조회 후 딕셔너리 매핑으로 개선 — 반복 호출 제거로 응답 속도 단축</li>
+            <li>path string 기반 계층형 폴더 시스템 설계 — 이동 시 하위 항목 경로 일괄 업데이트</li>
+            <li>시리얼 키 라이선스 발급 및 사용 추적 시스템 구현</li>
+            <li>오디오 파일 음량 기반 구간 자동 분할 및 Google Speech API 연동 — 한·영 STT 자동 변환 구현</li>
+            <li>복수 선택 답안 비트마스킹 인코딩 설계 — 정수 단일 컬럼에 다중 답안 압축 저장</li>
+            <li>워크북 삭제 시 연쇄 삭제 및 참조 무결성 관리 — 6단계 순차 삭제 + S3 파일 정리</li>
+          </ul>
+        </div>
+
+        <div class="project-block">
+          <div class="project-title">소셜 로그인 연동 및 인증/보안 시스템 구축</div>
+          <div class="project-period">2024.03 - 2024.09</div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">JWT</span>
+            <span class="project-tag">OAuth</span>
+            <span class="project-tag">bcrypt</span>
+          </div>
+          <ul class="exp-items">
+            <li>Google·Kakao·Naver 3개 플랫폼 OAuth 소셜 로그인 연동</li>
+            <li>JWT + bcrypt 기반 인증/인가 구조 (Access Token·Refresh Token 이중 구조)</li>
+            <li>사용자 기기 등록/변경 횟수 제한으로 불법 공유 방지</li>
+            <li>다국어(한/영/몽골어) 에러 메시지 — JWT 토큰 내 국가 정보 기반 자동 분기</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 오른쪽 컬럼 -->
+      <div class="p2-col">
+        <div class="project-block">
+          <div class="project-title">관리자 시스템 — 사용자 활동 분석 대시보드</div>
+          <div class="project-period">2024.06 - 2024.12</div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">SQLAlchemy</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">matplotlib</span>
+          </div>
+          <ul class="exp-items">
+            <li>8가지 핵심 지표(가입, 재방문, 문제풀이, 오답노트 등) 일별 자동 집계 시스템</li>
+            <li>일별/주별/월별 시계열 집계 API — ISO 주 기반 그룹핑 및 월별 롤업 처리</li>
+            <li>사용자 전체 활동 타임라인 조회 (로그인·문제풀이·시험 생성 등 시간순 추적)</li>
+            <li>지표별 드릴다운 API — 날짜 선택 시 사용자 목록 및 활동 내역 제공</li>
+            <li>UTC → KST 변환 및 전일 대비 비교 데이터 제공</li>
+            <li>3단계 RBAC — SuperAdmin / Admin / Alba 권한 분리</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3: 히어로웍스 + 사이드 프로젝트 -->
+<div class="page3">
+  <div class="page3-header">
+    <span>이근지 · 경력기술서</span>
+    <span>kunji1177@gmail.com · github.com/zyzyzyclaire</span>
+  </div>
+
+  <div class="page3-content">
+    <div class="p2-grid">
+
+      <div class="p2-section-title">주요 프로젝트 상세 — 히어로웍스</div>
+
+      <div class="p2-col">
+        <div class="project-block">
+          <div class="project-title">서비스 성능 개선 및 렌더링 속도 최적화</div>
+          <div class="project-period">2022.10 - 2022.12</div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">MySQL</span>
+          </div>
+          <ul class="exp-items">
+            <li>페이지 렌더링 최대 30초 소요 성능 병목 현상 분석</li>
+            <li>비효율적인 N+1 쿼리 및 중복 데이터 처리 로직 식별</li>
+            <li>쿼리 최적화로 응답 시간 30초 → 1초 이하로 단축</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p2-col">
+        <div class="project-block">
+          <div class="project-title">데이터베이스 마이그레이션 (DynamoDB → MySQL)</div>
+          <div class="project-period">2023.01 - 2023.03</div>
+          <div class="project-tags">
+            <span class="project-tag">DynamoDB</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Flask</span>
+          </div>
+          <ul class="exp-items">
+            <li>DynamoDB 기반 구조의 확장성 및 유지보수 한계 도출</li>
+            <li>MySQL 기반 RDB 구조로 데이터 모델 재설계</li>
+            <li>마이그레이션 스크립트 작성 및 서비스 로직 전환</li>
+            <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 구분선 -->
+      <div class="divider"></div>
+
+      <div class="p2-section-title">사이드 프로젝트</div>
+
+      <div class="p2-col">
+        <div class="project-block">
+          <div class="project-title">HeyVoca — 영어 단어 학습 앱 (Android / iOS 출시)</div>
+          <div class="project-period">2025 - 진행중 | 백엔드 및 관리자 시스템 전담</div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">Celery</span>
+            <span class="project-tag">Redis</span>
+            <span class="project-tag">AWS EB</span>
+            <span class="project-tag">FCM</span>
+          </div>
+          <ul class="exp-items">
+            <li>전체 DB 스키마 설계: 단어-뜻-예문 관계 테이블 등 30개 이상 테이블</li>
+            <li>엑셀 대량 업로드: pandas 파싱 → 관계 테이블 일괄 INSERT</li>
+            <li>Celery + Redis로 매일 정해진 시간에 FCM 푸시 알림 자동 발송</li>
+            <li>관리자 시스템 REST API 설계 및 AWS Elastic Beanstalk 배포</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p2-col">
+        <div class="project-block">
+          <div class="project-title">OrderAndGo — 음식점 테이블 주문 및 POS 시스템</div>
+          <div class="project-period">2024 - 진행중 | 백엔드 개발</div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Flask</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">WebSocket</span>
+            <span class="project-tag">Google OAuth</span>
+          </div>
+          <ul class="exp-items">
+            <li>결제 시스템 DB 설계: 주문-결제-정산 흐름 (TableOrderList → Order → Payment)</li>
+            <li>더치페이·할인·추가요금 등 복잡한 정산 로직 결제 API 구현</li>
+            <li>테이블 합석/이동 — 테이블 변경 시 Order·TableOrderList의 table_id 일괄 업데이트</li>
+            <li>Google OAuth2 기반 매장 로그인 연동</li>
+            <li>메뉴·테이블 page/position 관리 — 관리자 화면 위치 변경 시 DB 즉시 반영</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
