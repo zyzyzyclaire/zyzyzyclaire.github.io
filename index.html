@@ -1,525 +1,1197 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="개발자 포트폴리오">
     <title>이근지 | Backend Developer</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0d10;
+            --bg-card: #16161a;
+            --bg-card-hover: #1c1c22;
+            --border: #2a2a35;
+            --border-hover: #4a4a5a;
+            --accent: #818cf8;
+            --accent-dim: rgba(129, 140, 248, 0.15);
+            --accent-border: rgba(129, 140, 248, 0.3);
+            --green: #34d399;
+            --green-dim: rgba(52, 211, 153, 0.12);
+            --orange: #fb923c;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --tag-bg: #1e1e28;
+            --tag-text: #c0c0d0;
+        }
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
+        a:hover { opacity: .75; }
+
+        /* ─── Layout ─────────────────────────────────── */
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            min-height: 100vh;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 0;
+        }
+
+        /* ─── Sidebar ─────────────────────────────────── */
+        .sidebar {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            padding: 48px 24px 48px 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+        }
+
+        .sidebar-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-role {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            padding-left: 12px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 7px 12px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            border-radius: 6px;
+            transition: all .2s;
+            margin-bottom: 2px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--accent-dim);
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        .sidebar-contact {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sidebar-contact a {
+            display: block;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            transition: color .2s;
+        }
+
+        .sidebar-contact a:hover {
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        /* ─── Main Content ─────────────────────────────── */
+        .main {
+            padding: 48px 0 80px 48px;
+        }
+
+        /* ─── Hero ─────────────────────────────────────── */
+        .hero {
+            padding-bottom: 56px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 56px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--green-dim);
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .3; }
+        }
+
+        .hero-name {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .hero-name span {
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .hero-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .highlight-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: all .2s;
+        }
+
+        .highlight-chip:hover {
+            border-color: var(--accent-border);
+            color: var(--text-primary);
+        }
+
+        .chip-icon {
+            font-size: 16px;
+        }
+
+        /* ─── Section ──────────────────────────────────── */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ─── About ─────────────────────────────────────── */
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 620px;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        .about-text .accent-text {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ─── Experience ────────────────────────────────── */
+        .timeline {
+            position: relative;
+        }
+
+        .exp-item {
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: all .2s;
+        }
+
+        .exp-item:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+            gap: 16px;
+        }
+
+        .exp-company {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .exp-period {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            padding: 3px 10px;
+            background: var(--tag-bg);
+            border-radius: 999px;
+        }
+
+        .exp-role {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .exp-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .exp-list li {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .exp-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .exp-list li strong {
+            color: var(--text-primary);
+        }
+
+        .highlight-metric {
+            color: var(--green) !important;
+            font-weight: 600;
+        }
+
+        /* ─── Skills ─────────────────────────────────────── */
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .skill-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .skill-category-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 110px;
+            flex-shrink: 0;
+            padding-top: 6px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            padding: 5px 12px;
+            background: var(--tag-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 12.5px;
+            color: var(--tag-text);
+            font-weight: 500;
+            transition: all .15s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+
+        .skill-tag.primary {
+            background: var(--accent-dim);
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+
+        /* ─── Projects ───────────────────────────────────── */
+        .project-card {
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            transition: all .2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .project-card.featured {
+            border-color: var(--accent-border);
+            background: linear-gradient(135deg, #16161a 0%, #1a1a2e 100%);
+        }
+
+        .project-card.featured:hover {
+            border-color: rgba(129, 140, 248, 0.5);
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 6px;
+        }
+
+        .project-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .project-period {
+            font-size: 12px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            padding: 3px 10px;
+            background: var(--tag-bg);
+            border-radius: 999px;
+        }
+
+        .project-company-tag {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .project-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            font-style: italic;
+        }
+
+        .project-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 16px;
+        }
+
+        .project-list li {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .project-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .project-list li strong {
+            color: var(--text-primary);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .tech-tag {
+            padding: 3px 9px;
+            background: var(--tag-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-family: 'Inter', monospace;
+        }
+
+        .project-links {
+            margin-top: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12.5px;
+            color: var(--accent);
+            border: 1px solid var(--accent-border);
+            padding: 4px 12px;
+            border-radius: 6px;
+            transition: all .2s;
+        }
+
+        .project-link:hover {
+            background: var(--accent-dim);
+            opacity: 1;
+        }
+
+        .product-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            background: var(--green-dim);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: 8px;
+            font-size: 12.5px;
+            color: var(--green);
+            font-weight: 500;
+            transition: all .2s;
+        }
+
+        .store-badge:hover {
+            opacity: .8;
+        }
+
+        /* ─── Certifications ─────────────────────────────── */
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .cert-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .cert-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ─── Activities ─────────────────────────────────── */
+        .activity-card {
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .activity-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .activity-period {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .activity-desc {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ─── Footer ─────────────────────────────────────── */
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ─── Mobile ─────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                padding: 32px 20px 20px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-section { display: none; }
+
+            .sidebar-contact {
+                border-top: none;
+                padding-top: 16px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .sidebar-contact a { margin-bottom: 0; }
+
+            .main {
+                padding: 32px 20px 60px;
+            }
+
+            .hero-name { font-size: 30px; }
+            .hero-stats { gap: 20px; }
+            .stat-value { font-size: 22px; }
+
+            .exp-header, .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .skill-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .skill-category-name {
+                width: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header / Intro -->
-    <header class="header">
-        <div class="container">
-            <h1 class="name">이근지</h1>
-            <p class="title">Backend Developer</p>
-            <div class="contact-links">
-                <a href="mailto:kunji1177@gmail.com">kunji1177@gmail.com</a>
-                <span class="separator">|</span>
-                <a href="https://github.com/zyzyzyclaire" target="_blank" rel="noopener">GitHub</a>
-                <!-- <span class="separator">|</span> -->
-                <!-- <a href="https://blog.example.com" target="_blank" rel="noopener">Blog</a> -->
-            </div>
-        </div>
-    </header>
 
+<div class="layout">
+
+    <!-- ─── Sidebar ─────────────────────────── -->
+    <aside class="sidebar">
+        <div class="sidebar-name">이근지</div>
+        <div class="sidebar-role">Backend Developer</div>
+
+        <nav>
+            <div class="nav-section">
+                <div class="nav-label">About</div>
+                <a href="#about" class="nav-link">소개</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">Career</div>
+                <a href="#experience" class="nav-link">경력</a>
+                <a href="#skills" class="nav-link">기술 스택</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">Projects</div>
+                <a href="#products" class="nav-link">사이드 프로젝트</a>
+                <a href="#work-projects" class="nav-link">업무 프로젝트</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">Etc</div>
+                <a href="#certifications" class="nav-link">자격증</a>
+                <a href="#activities" class="nav-link">활동</a>
+            </div>
+        </nav>
+
+        <div class="sidebar-contact">
+            <a href="mailto:kunji1177@gmail.com">kunji1177@gmail.com</a>
+            <a href="https://github.com/zyzyzyclaire" target="_blank" rel="noopener">github.com/zyzyzyclaire</a>
+        </div>
+    </aside>
+
+    <!-- ─── Main ─────────────────────────────── -->
     <main class="main">
-        <!-- About Me -->
+
+        <!-- Hero -->
+        <section class="hero" id="top">
+            <div class="hero-badge">구직 중 · 즉시 합류 가능</div>
+            <h1 class="hero-name">서비스를 처음부터<br><span>함께 만들어온</span> 백엔드 개발자</h1>
+            <p class="hero-tagline">
+                스타트업에서 3년+ 백엔드 개발 경력. 초기 설계부터 운영까지 전 과정에 참여했고,
+                사이드 프로젝트로 앱 스토어에 직접 출시한 서비스를 운영 중입니다.
+                빠르게 실행하고, 문제를 직접 해결하는 걸 좋아합니다.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">3년+</span>
+                    <span class="stat-label">백엔드 개발 경력</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">109개</span>
+                    <span class="stat-label">REST API 엔드포인트</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">40+</span>
+                    <span class="stat-label">설계한 DB 테이블 수</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">2개</span>
+                    <span class="stat-label">출시된 사이드 프로젝트</span>
+                </div>
+            </div>
+
+            <div class="hero-highlights">
+                <div class="highlight-chip">
+                    <span class="chip-icon">⚡</span>
+                    응답시간 30초 → 1초 이하 최적화
+                </div>
+                <div class="highlight-chip">
+                    <span class="chip-icon">📱</span>
+                    Android / iOS 앱 직접 출시
+                </div>
+                <div class="highlight-chip">
+                    <span class="chip-icon">🏗️</span>
+                    서비스 초기 설계부터 참여
+                </div>
+                <div class="highlight-chip">
+                    <span class="chip-icon">☁️</span>
+                    AWS 서버리스 아키텍처 운영
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
         <section class="section" id="about">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="section-content">
-                    <p>
-                        안녕하세요, <strong>백엔드 개발자 이근지</strong>입니다.<br>
-                        Python 기반 웹 서비스 백엔드를 중심으로 실무 경험을 쌓아왔으며,<br>
-                        성능 개선과 유지보수성을 고려한 구조 설계를 중요하게 생각합니다.<br>
-                        기획·디자인 팀과의 협업을 통해 실제 사용자 문제를 해결하는 개발을 지향합니다.
-                    </p>
+            <div class="section-header">
+                <span class="section-title">About</span>
+                <div class="section-line"></div>
+            </div>
+            <p class="about-text">
+                스타트업 두 곳에서 <strong>서비스의 0에서 1을 만드는 경험</strong>을 해왔습니다.
+                아이디어가 코드가 되고, 코드가 실제 사용자에게 닿는 과정을 좋아합니다.
+                <br><br>
+                백엔드 개발 외에도 <strong>사이드 프로젝트 팀을 직접 꾸려</strong> 영어 단어 학습 앱
+                <span class="accent-text">HeyVoca</span>를 Android/iOS에 출시했습니다.
+                기획자, 디자이너와 함께 제품을 만드는 과정에서 개발 너머의 시각을 키워가고 있습니다.
+                <br><br>
+                작은 팀에서 빠르게 실행하고, 완벽하지 않아도 일단 배포해보고, 사용자 반응을 보며 개선하는
+                방식에 익숙합니다. <strong>제품을 같이 키워나가는 동료</strong>를 찾고 있다면 잘 맞을 것 같습니다.
+            </p>
+        </section>
+
+        <!-- Skills -->
+        <section class="section" id="skills">
+            <div class="section-header">
+                <span class="section-title">Skills</span>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-row">
+                    <span class="skill-category-name">주력</span>
+                    <div class="skill-tags">
+                        <span class="skill-tag primary">Python</span>
+                        <span class="skill-tag primary">FastAPI</span>
+                        <span class="skill-tag primary">Flask</span>
+                        <span class="skill-tag primary">SQLAlchemy</span>
+                        <span class="skill-tag primary">MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-category-name">Cloud / DevOps</span>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS Lambda</span>
+                        <span class="skill-tag">AWS S3</span>
+                        <span class="skill-tag">AWS EB</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Sentry</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-category-name">인증 / 보안</span>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JWT</span>
+                        <span class="skill-tag">OAuth 2.0</span>
+                        <span class="skill-tag">bcrypt</span>
+                        <span class="skill-tag">RBAC</span>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-category-name">기타</span>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">Celery</span>
+                        <span class="skill-tag">DynamoDB</span>
+                        <span class="skill-tag">WebSocket</span>
+                        <span class="skill-tag">FCM</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Experience -->
         <section class="section" id="experience">
-            <div class="container">
-                <h2 class="section-title">Experience<span class="experience-total">3년+</span></h2>
-                <div class="section-content">
+            <div class="section-header">
+                <span class="section-title">Experience</span>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
 
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="company-name">프라이머스</h3>
-                            <span class="period">2023.07 - 현재<span class="duration">2년 7개월</span></span>
-                        </div>
-                        <p class="position">Backend Developer</p>
-                        <ul class="experience-list">
-                            <li>서비스 초기 기획 단계부터 참여, <strong>40개 이상 테이블</strong>의 데이터 모델 및 아키텍처 설계</li>
-                            <li>FastAPI 기반 REST API 개발 및 운영 (100+ 엔드포인트)</li>
-                            <li>AWS Lambda + S3 기반 서버리스 아키텍처 설계 및 운영</li>
-                            <li>Request ID 기반 요청 추적 미들웨어 구현 및 Sentry 에러 모니터링 연동</li>
-                            <li>for 루프 내 건별 DB 조회를 루프 전 일괄 조회 후 딕셔너리 매핑으로 개선 — 반복 호출 제거로 응답 속도 단축</li>
-                            <li>Google·Kakao·Naver OAuth 소셜 로그인 연동 및 JWT 인증 구조 설계</li>
-                            <li>관리자 대시보드 구축 — <strong>8가지 핵심 지표</strong> 일별 자동 집계, 3단계 RBAC 권한 분리</li>
-                            <li>오디오 자동 전사 파이프라인 — 음량 기반 구간 분할 및 한·영 STT 자동 변환</li>
-                        </ul>
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3 class="exp-company">프라이머스</h3>
+                        <span class="exp-period">2023.07 — 현재 · 2년 7개월</span>
                     </div>
-
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3 class="company-name">히어로웍스</h3>
-                            <span class="period">2022.07 - 2023.07<span class="duration">1년</span></span>
-                        </div>
-                        <p class="position">Backend Developer</p>
-                        <ul class="experience-list">
-                            <li>데이터 엑셀 출력 <strong>성능 개선 — 응답 시간 60초 → 5초 이하</strong>로 단축</li>
-                            <li><strong>DynamoDB → MySQL</strong> 데이터베이스 마이그레이션 수행</li>
-                            <li>데이터 모델 재설계 및 마이그레이션 스크립트 작성</li>
-                            <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
-                            <li>관리자 페이지 구축 및 운영 기능 개발</li>
-                        </ul>
-                    </div>
-
+                    <div class="exp-role">Backend Developer</div>
+                    <ul class="exp-list">
+                        <li>서비스 <strong>초기 기획 단계부터 참여</strong>, 40개 이상 테이블 DB 모델 및 아키텍처 설계</li>
+                        <li>FastAPI 기반 <strong>109개 REST API</strong> 엔드포인트 개발 · 운영 (14개 라우트 모듈)</li>
+                        <li>AWS Lambda + S3 기반 서버리스 아키텍처 설계 및 운영</li>
+                        <li>Request ID 기반 요청 추적 미들웨어 구현 · Sentry 에러 모니터링 연동</li>
+                        <li>N+1 쿼리 패턴 → 루프 전 일괄 조회 + 딕셔너리 매핑으로 개선, 반복 DB 호출 제거</li>
+                        <li>Google · Kakao · Naver OAuth 소셜 로그인 연동 및 JWT 인증 구조 설계</li>
+                        <li>관리자 대시보드 — 8가지 핵심 지표 일별 자동 집계, <strong>3단계 RBAC 권한 분리</strong></li>
+                        <li>오디오 자동 전사 파이프라인 — 음량 기반 구간 분할 및 한·영 STT 자동 변환</li>
+                    </ul>
                 </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3 class="exp-company">히어로웍스</h3>
+                        <span class="exp-period">2022.07 — 2023.07 · 1년</span>
+                    </div>
+                    <div class="exp-role">Backend Developer</div>
+                    <ul class="exp-list">
+                        <li>페이지 렌더링 성능 병목 분석 → 쿼리 최적화로 <span class="highlight-metric">응답시간 30초 → 1초 이하</span> 단축</li>
+                        <li>데이터 엑셀 출력 <span class="highlight-metric">응답시간 60초 → 5초 이하</span>로 개선</li>
+                        <li><strong>DynamoDB → MySQL</strong> 데이터베이스 마이그레이션 수행 (데이터 모델 재설계 포함)</li>
+                        <li>레거시 코드 리팩토링 및 관리자 페이지 운영 기능 개발</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
-        <!-- Skills -->
-        <section class="section" id="skills">
-            <div class="container">
-                <h2 class="section-title">Skills</h2>
-                <div class="section-content">
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">Backend</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">FastAPI</span>
-                            <span class="skill-tag">Flask</span>
-                            <span class="skill-tag">SQLAlchemy</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">Oracle</span>
-                            <span class="skill-tag">DynamoDB</span>
-                            <span class="skill-tag">Redis</span>
-                            <span class="skill-tag">Celery</span>
-                            <span class="skill-tag">JWT</span>
-                            <span class="skill-tag">OAuth</span>
-                            <span class="skill-tag">bcrypt</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">DevOps / Cloud</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">AWS Lambda</span>
-                            <span class="skill-tag">AWS S3</span>
-                            <span class="skill-tag">AWS EB</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">Sentry</span>
-                            <span class="skill-tag">Linux</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">Collaboration</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Jira</span>
-                            <span class="skill-tag">Slack</span>
-                            <span class="skill-tag">Notion</span>
-                        </div>
-                    </div>
+        <!-- Side Projects (Products) -->
+        <section class="section" id="products">
+            <div class="section-header">
+                <span class="section-title">Side Projects</span>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- HeyVoca - featured -->
+            <div class="project-card featured">
+                <div class="featured-badge">✦ 출시된 서비스</div>
+                <div class="project-header">
+                    <h3 class="project-name">HeyVoca</h3>
+                    <span class="project-period">2025 — 현재</span>
+                </div>
+                <p class="project-subtitle">영어 단어 학습 앱 · Android / iOS 출시 · 백엔드 & 관리자 시스템 전담</p>
+                <ul class="project-list">
+                    <li>개발자 2인으로 시작 → 현재 <strong>개발자 · 디자이너 · 기획자</strong> 팀으로 성장</li>
+                    <li><strong>전체 DB 스키마 설계</strong> — 단어-뜻-예문 관계, 사용자 학습 데이터, 북스토어 등 30개 이상 테이블</li>
+                    <li>pandas 기반 <strong>엑셀 대량 업로드</strong> — 파싱 → 단어/뜻/예문 자동 분리 → 관계 테이블 일괄 INSERT</li>
+                    <li><strong>Celery + Redis</strong>로 매일 정해진 시간에 FCM 푸시 알림 자동 발송</li>
+                    <li>관리자 REST API 설계 및 <strong>AWS Elastic Beanstalk</strong> 배포 · 운영</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Celery</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">AWS EB</span>
+                    <span class="tech-tag">FCM</span>
+                </div>
+                <div class="product-links">
+                    <a class="store-badge" href="https://github.com/whrksp126/heyvoca_back" target="_blank" rel="noopener">
+                        GitHub (Backend)
+                    </a>
+                    <a class="store-badge" href="https://github.com/whrksp126/heyvoca_admin" target="_blank" rel="noopener">
+                        GitHub (Admin)
+                    </a>
+                </div>
+            </div>
+
+            <!-- OrderAndGo -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">OrderAndGo</h3>
+                    <span class="project-period">2024 — 현재</span>
+                </div>
+                <p class="project-subtitle">음식점 테이블 주문 · POS 시스템 · 백엔드 개발</p>
+                <ul class="project-list">
+                    <li><strong>결제 시스템 DB 설계</strong> — 주문-결제-정산 흐름 (TableOrderList → Order → Payment)</li>
+                    <li>더치페이 · 할인/추가요금 등 복잡한 정산 로직 처리하는 <strong>결제 API</strong> 구현</li>
+                    <li>테이블 합석/이동 시 Order · TableOrderList의 table_id 일괄 업데이트</li>
+                    <li><strong>WebSocket</strong> 기반 실시간 주문 알림 · <strong>Google OAuth2</strong> 매장 로그인 연동</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">SQLAlchemy</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">WebSocket</span>
+                    <span class="tech-tag">Google OAuth</span>
+                </div>
+            </div>
+
+            <!-- 모바일 청첩장 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">모바일 청첩장</h3>
+                    <span class="project-period">2023.12 — 현재</span>
+                </div>
+                <p class="project-subtitle">디지털 청첩장 생성 웹 서비스 · 프론트엔드 전담 (백엔드 역량 확장 목적)</p>
+                <ul class="project-list">
+                    <li><strong>Swiper.js</strong> 갤러리 슬라이더 · <strong>Cropper.js</strong> 이미지 크롭 기능 개발</li>
+                    <li><strong>Naver Maps API</strong> 연동 — 주소 입력 시 자동 지오코딩 및 지도 표시</li>
+                    <li>모바일 퍼스트 반응형 레이아웃 · CSS 애니메이션 적용</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Swiper.js</span>
+                    <span class="tech-tag">Cropper.js</span>
+                    <span class="tech-tag">Naver Maps API</span>
+                    <span class="tech-tag">Flask</span>
                 </div>
             </div>
         </section>
 
         <!-- Work Projects -->
         <section class="section" id="work-projects">
-            <div class="container">
-                <h2 class="section-title">Work Projects</h2>
-                <div class="section-content">
+            <div class="section-header">
+                <span class="section-title">Work Projects</span>
+                <div class="section-line"></div>
+            </div>
 
-                    <!-- 프라이머스 — 학습 서비스 백엔드 API -->
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">소셜 로그인 연동 및 인증/보안 시스템 구축</h3>
-                            <span class="period">2024.03 - 2024.09</span>
-                        </div>
-                        <span class="project-company">프라이머스</span>
-                        <ul class="project-detail-list">
-                            <li><strong>Google, Kakao, Naver</strong> 3개 플랫폼 OAuth 소셜 로그인 연동</li>
-                            <li><strong>JWT + bcrypt</strong> 기반 인증/인가 구조 설계 (Access Token, Refresh Token)</li>
-                            <li>사용자 <strong>기기 등록/변경 횟수 제한</strong> 시스템 구현으로 불법 공유 방지 (월별 자동 리셋)</li>
-                            <li><strong>다국어(한/영/몽골어) 에러 메시지</strong> 시스템 구현 — JWT 토큰 내 국가 정보 기반 자동 분기</li>
-                            <li>47개 이상의 커스텀 예외 클래스 계층 구조 설계</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">JWT</span>
-                            <span class="tech-tag">OAuth</span>
-                            <span class="tech-tag">bcrypt</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">학습 콘텐츠 관리 및 사용자 학습 시스템 개발</h3>
-                            <span class="period">2023.12 - 2024.06</span>
-                        </div>
-                        <span class="project-company">프라이머스</span>
-                        <ul class="project-detail-list">
-                            <li>path string 기반 <strong>계층형 폴더 시스템</strong> 설계 — 폴더 이동 시 하위 항목 경로 일괄 업데이트 (14개 엔드포인트)</li>
-                            <li>태그 기반 <strong>오답노트 시스템</strong> 구현 — 틀린 문제 분류, 커스텀 순서 재풀이, 원본과 별도 정답률 추적</li>
-                            <li><strong>DIY 시험 생성 시스템</strong> — 사용자 문제 선택 → 랜덤 출제 → 자동 채점 및 점수 추적</li>
-                            <li><strong>단어장 시스템</strong> 개발 — 문제-단어 연동 및 다국어 번역 지원</li>
-                            <li>커스텀 <strong>PDF/오디오 뷰어</strong> — 사용자 업로드 파일 관리, 기기별 파일 경로 분리, 페이지별 주석 저장</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">AWS S3</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">서버리스 백엔드 아키텍처 설계 및 시스템 구축</h3>
-                            <span class="period">2023.08 - 2024.03</span>
-                        </div>
-                        <span class="project-company">프라이머스</span>
-                        <ul class="project-detail-list">
-                            <li>서비스 <strong>초기 기획 단계부터 참여</strong>하여 <strong>40개 이상 테이블</strong>의 데이터 모델 및 아키텍처 설계</li>
-                            <li>FastAPI 기반 <strong>109개 REST API</strong> 엔드포인트 개발 (14개 라우트 모듈)</li>
-                            <li><strong>S3 Presigned URL</strong> 기반 시간 제한 파일 접근 제어 및 벌크 삭제 최적화 (AWS 1000개 제한 대응)</li>
-                            <li><strong>Request ID 기반 요청 추적 미들웨어</strong> 구현 및 <strong>Sentry</strong> 연동으로 프로덕션 에러 모니터링</li>
-                            <li>for 루프 내 건별 DB 조회를 루프 전 일괄 조회 후 딕셔너리 매핑으로 개선 — 반복 호출 제거로 응답 속도 단축</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">AWS Lambda</span>
-                            <span class="tech-tag">Mangum</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">AWS S3</span>
-                            <span class="tech-tag">Sentry</span>
-                        </div>
-                    </div>
-
-                    <!-- 프라이머스 — 관리자 시스템 -->
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">관리자 시스템 — 미디어 처리 및 콘텐츠 관리 도구 구축</h3>
-                            <span class="period">2023.10 - 2024.09</span>
-                        </div>
-                        <span class="project-company">프라이머스</span>
-                        <ul class="project-detail-list">
-                            <li><strong>오디오 자동 전사 파이프라인</strong> 구축 — pydub 기반 무음 감지(-50dB) 후 음성 구간 추출, <strong>한/영 이중 언어 STT</strong> 자동 변환</li>
-                            <li><strong>대용량 PDF 스트리밍 처리</strong> — 메모리 효율적 페이지 분할 및 썸네일 자동 생성 (OOM 방지)</li>
-                            <li><strong>비트 연산 기반 다중 정답 인코딩</strong> 시스템 설계 — 객관식/O·X 등 6가지 답안 유형을 바이너리 값으로 효율 저장</li>
-                            <li><strong>다국어 단어장 관리</strong> 도구 — 좌표 기반 단어 위치 매핑, 언어쌍 오버라이드 지원 (한/영/몽골어)</li>
-                            <li><strong>연쇄 삭제 및 참조 무결성 관리</strong> — 사용자 데이터 사전 검증 후 6단계 순차 삭제 + S3 파일 정리</li>
-                            <li><strong>시리얼 키</strong> 라이선스 발급 및 사용 추적 시스템</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">pydub</span>
-                            <span class="tech-tag">SpeechRecognition</span>
-                            <span class="tech-tag">PyPDF2</span>
-                            <span class="tech-tag">AWS S3</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">관리자 시스템 — 사용자 활동 분석 대시보드</h3>
-                            <span class="period">2024.06 - 2024.12</span>
-                        </div>
-                        <span class="project-company">프라이머스</span>
-                        <ul class="project-detail-list">
-                            <li><strong>8가지 핵심 지표</strong>(가입, 재방문, 문제풀이, 오답노트, 시험, 단어장 등) 일별 자동 집계 시스템 구축</li>
-                            <li><strong>일별/주별/월별 시계열 집계</strong> API 설계 — ISO 주 기반 그룹핑 및 월별 롤업 처리</li>
-                            <li>특정 사용자의 <strong>전체 활동 타임라인 조회</strong> 기능 구현 (로그인, 문제풀이, 시험 생성 등 시간순 추적)</li>
-                            <li>각 지표별 <strong>상세 드릴다운</strong> API — 날짜 선택 시 해당 사용자 목록 및 활동 내역 제공</li>
-                            <li>UTC → KST <strong>타임존 변환</strong> 처리 및 전일 대비 비교 데이터 제공</li>
-                            <li><strong>3단계 역할 기반 접근 제어(RBAC)</strong> — SuperAdmin / Admin / Alba 권한 분리</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">matplotlib</span>
-                        </div>
-                    </div>
-
-                    <!-- 히어로웍스 프로젝트 -->
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">데이터베이스 마이그레이션</h3>
-                            <span class="period">2023.01 - 2023.03</span>
-                        </div>
-                        <span class="project-company">히어로웍스</span>
-                        <ul class="project-detail-list">
-                            <li>DynamoDB 기반 구조의 확장성 및 유지보수 한계 문제 도출</li>
-                            <li><strong>MySQL 기반 RDB 구조</strong>로 데이터 모델 재설계</li>
-                            <li>기존 데이터 마이그레이션 스크립트 작성 및 서비스 로직 전환</li>
-                            <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">DynamoDB</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Python</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">서비스 성능 개선 및 렌더링 속도 최적화</h3>
-                            <span class="period">2022.10 - 2022.12</span>
-                        </div>
-                        <span class="project-company">히어로웍스</span>
-                        <ul class="project-detail-list">
-                            <li>페이지 렌더링 시 최대 <strong>30초</strong> 소요되는 성능 병목 현상 분석</li>
-                            <li>비효율적인 N+1 쿼리 및 중복 데이터 처리 로직 식별</li>
-                            <li>쿼리 최적화 및 로직 구조 개선을 통해 <strong>응답 시간 30초 → 1초 이하</strong>로 단축</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                    </div>
-
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">소셜 로그인 연동 및 인증/보안 시스템</h3>
+                    <span class="project-period">2024.03 — 2024.09</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li><strong>Google · Kakao · Naver</strong> 3개 플랫폼 OAuth 소셜 로그인 연동</li>
+                    <li><strong>JWT + bcrypt</strong> 기반 인증/인가 구조 설계 (Access Token, Refresh Token 분리)</li>
+                    <li>사용자 <strong>기기 등록/변경 횟수 제한</strong> 시스템 — 불법 공유 방지 (월별 자동 리셋)</li>
+                    <li><strong>다국어(한/영/몽골어) 에러 메시지</strong> — JWT 토큰 내 국가 정보 기반 자동 분기</li>
+                    <li>47개 이상의 커스텀 예외 클래스 계층 구조 설계</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">JWT</span>
+                    <span class="tech-tag">OAuth 2.0</span>
+                    <span class="tech-tag">bcrypt</span>
                 </div>
             </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">서버리스 백엔드 아키텍처 설계 및 시스템 구축</h3>
+                    <span class="project-period">2023.08 — 2024.03</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li>서비스 <strong>초기 기획 단계부터 참여</strong> — 40개 이상 테이블 데이터 모델 및 아키텍처 설계</li>
+                    <li>FastAPI 기반 <strong>109개 REST API</strong> 엔드포인트 개발 (14개 라우트 모듈)</li>
+                    <li><strong>S3 Presigned URL</strong> 기반 시간 제한 파일 접근 제어 · 벌크 삭제 최적화 (AWS 1000개 제한 대응)</li>
+                    <li><strong>Request ID 기반 요청 추적 미들웨어</strong> 구현 · Sentry 연동으로 프로덕션 에러 모니터링</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">AWS Lambda</span>
+                    <span class="tech-tag">Mangum</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">AWS S3</span>
+                    <span class="tech-tag">Sentry</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">학습 콘텐츠 관리 및 사용자 학습 시스템</h3>
+                    <span class="project-period">2023.12 — 2024.06</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li>path string 기반 <strong>계층형 폴더 시스템</strong> — 폴더 이동 시 하위 항목 경로 일괄 업데이트 (14개 엔드포인트)</li>
+                    <li>태그 기반 <strong>오답노트 시스템</strong> — 틀린 문제 분류, 커스텀 순서 재풀이, 별도 정답률 추적</li>
+                    <li><strong>DIY 시험 생성</strong> — 문제 선택 → 랜덤 출제 → 자동 채점 및 점수 추적</li>
+                    <li>커스텀 <strong>PDF/오디오 뷰어</strong> — 기기별 파일 경로 분리, 페이지별 주석 저장</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">SQLAlchemy</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">AWS S3</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">관리자 시스템 — 미디어 처리 및 콘텐츠 관리</h3>
+                    <span class="project-period">2023.10 — 2024.09</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li><strong>오디오 자동 전사 파이프라인</strong> — pydub 무음 감지(-50dB) 후 음성 구간 추출, 한/영 이중 언어 STT 자동 변환</li>
+                    <li><strong>대용량 PDF 스트리밍 처리</strong> — 메모리 효율적 페이지 분할 및 썸네일 자동 생성 (OOM 방지)</li>
+                    <li><strong>비트 연산 기반 다중 정답 인코딩</strong> — 6가지 답안 유형을 바이너리 값으로 효율 저장</li>
+                    <li><strong>연쇄 삭제 및 참조 무결성 관리</strong> — 사용자 데이터 사전 검증 후 6단계 순차 삭제 + S3 파일 정리</li>
+                    <li><strong>시리얼 키</strong> 라이선스 발급 및 사용 추적 시스템</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">pydub</span>
+                    <span class="tech-tag">SpeechRecognition</span>
+                    <span class="tech-tag">PyPDF2</span>
+                    <span class="tech-tag">AWS S3</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">관리자 시스템 — 사용자 활동 분석 대시보드</h3>
+                    <span class="project-period">2024.06 — 2024.12</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li><strong>8가지 핵심 지표</strong>(가입, 재방문, 문제풀이, 오답노트, 시험 등) 일별 자동 집계 시스템</li>
+                    <li>일별/주별/월별 시계열 집계 API — ISO 주 기반 그룹핑 및 월별 롤업 처리</li>
+                    <li>특정 사용자의 <strong>전체 활동 타임라인 조회</strong> — 로그인, 문제풀이, 시험 생성 등 시간순 추적</li>
+                    <li><strong>3단계 RBAC</strong> — SuperAdmin / Admin / Alba 권한 분리</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">SQLAlchemy</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">matplotlib</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">데이터베이스 마이그레이션 · 서비스 성능 개선</h3>
+                    <span class="project-period">2022.10 — 2023.03</span>
+                </div>
+                <p class="project-company-tag">히어로웍스</p>
+                <ul class="project-list">
+                    <li>DynamoDB 확장성 한계 → <strong>MySQL 기반 RDB 구조로 재설계</strong> 및 마이그레이션 수행</li>
+                    <li>N+1 쿼리 · 중복 처리 로직 식별 → 쿼리 최적화로 <span class="highlight-metric">응답시간 30초 → 1초 이하</span> 달성</li>
+                    <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">DynamoDB</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </div>
+
         </section>
-
-        <!-- Personal Projects -->
-        <section class="section" id="personal-projects">
-            <div class="container">
-                <h2 class="section-title">Personal Projects</h2>
-                <div class="section-content">
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">HeyVoca</h3>
-                            <span class="period">2025 - 진행중</span>
-                        </div>
-                        <p class="project-subtitle">영어 단어 학습 앱 (Android/iOS 출시) | 백엔드 및 관리자 시스템 전담</p>
-                        <ul class="project-detail-list">
-                            <li><strong>전체 DB 스키마 설계</strong>: 단어-뜻-예문 관계 테이블, 사용자 학습 데이터, 북스토어 구조 등 30개 이상 테이블 설계</li>
-                            <li><strong>엑셀 대량 업로드</strong> 기능 구현: pandas로 엑셀 파싱 → 단어/뜻/예문 자동 분리 → 관계 테이블 일괄 INSERT</li>
-                            <li><strong>Celery + Redis</strong>로 매일 정해진 시간에 FCM 푸시 알림 자동 발송</li>
-                            <li>관리자 시스템 REST API 설계 및 <strong>AWS Elastic Beanstalk</strong> 배포</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Celery</span>
-                            <span class="tech-tag">Redis</span>
-                            <span class="tech-tag">AWS EB</span>
-                            <span class="tech-tag">FCM</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/whrksp126/heyvoca_admin" target="_blank" rel="noopener">GitHub (Admin)</a>
-                            <span class="separator">|</span>
-                            <a href="https://github.com/whrksp126/heyvoca_back" target="_blank" rel="noopener">GitHub (Backend)</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">OrderAndGo</h3>
-                            <span class="period">2024 - 진행중</span>
-                        </div>
-                        <p class="project-subtitle">음식점 테이블 주문 및 POS 시스템 | 백엔드 개발</p>
-                        <ul class="project-detail-list">
-                            <li><strong>결제 시스템 DB 설계</strong>: 주문-결제-정산 흐름을 위한 테이블 구조 설계 (TableOrderList → Order → Payment)</li>
-                            <li>더치페이, 할인/추가요금 등 복잡한 정산 로직을 처리하는 <strong>결제 API</strong> 구현</li>
-                            <li>테이블 합석/이동 — 테이블 변경 시 Order·TableOrderList의 table_id 일괄 업데이트</li>
-                            <li><strong>Google OAuth2</strong> 기반 매장 로그인 연동</li>
-                            <li>메뉴·테이블 page/position 관리 — 관리자 화면 위치 변경 시 DB 즉시 반영</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">WebSocket</span>
-                            <span class="tech-tag">Google OAuth</span>
-                        </div>
-                        <div class="project-links">
-                            <!-- <a href="https://github.com/zyzyzyclaire/orderandgo" target="_blank" rel="noopener">GitHub</a> -->
-                        </div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-header">
-                            <h3 class="project-name">모바일 청첩장</h3>
-                            <span class="period">2023.12 - 진행중</span>
-                        </div>
-                        <p class="project-subtitle">디지털 청첩장 생성 웹 서비스 | 프론트엔드 전담</p>
-                        <ul class="project-detail-list">
-                            <li>프론트엔드 역량 확장을 위해 UI/UX 전체 구현을 주도</li>
-                            <li><strong>Swiper.js</strong>를 활용한 갤러리 슬라이더 구현, 터치 제스처 및 반응형 대응</li>
-                            <li><strong>Cropper.js</strong> 기반 이미지 크롭 기능 개발 (원본/썸네일 분리 저장)</li>
-                            <li><strong>Naver Maps API</strong> 연동으로 주소 입력 시 자동 지오코딩 및 지도 표시</li>
-                            <li>모바일 퍼스트 반응형 레이아웃 설계 및 CSS 애니메이션 적용</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Swiper.js</span>
-                            <span class="tech-tag">Cropper.js</span>
-                            <span class="tech-tag">Naver Maps API</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                        <div class="project-links">
-                            <!-- <a href="https://github.com/zyzyzyclaire/invitation_wedding_template" target="_blank" rel="noopener">GitHub</a> -->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Training Projects -->
-        <section class="section" id="training-projects">
-            <div class="container">
-                <h2 class="section-title">Training Projects</h2>
-                <div class="section-content">
-
-                    <div class="project-item training-project">
-                        <div class="project-header">
-                            <h3 class="project-name">Spring 기반 영화 예매 사이트</h3>
-                            <span class="period">2022.05 - 2022.06</span>
-                        </div>
-                        <p class="project-subtitle">교육 과정 팀 프로젝트 (5인) · 백엔드/DB 설계 및 구현 담당</p>
-                        <ul class="project-detail-list">
-                            <li><strong>Spring MVC 구조 기반</strong> 백엔드 아키텍처 설계</li>
-                            <li>영화 조회, 예매, 관리자 기능 등 <strong>핵심 API 및 로직 구현</strong></li>
-                            <li>Oracle DB 스키마 설계 및 데이터 흐름 정의</li>
-                            <li>요청–응답 흐름 및 컨트롤러–서비스–DAO 구조 설계 경험</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">Spring Framework</span>
-                            <span class="tech-tag">Oracle DB</span>
-                        </div>
-                    </div>
-
-                    <div class="project-item training-project">
-                        <div class="project-header">
-                            <h3 class="project-name">JSP 쇼핑몰 웹 애플리케이션</h3>
-                            <span class="period">2022.04 - 2022.05</span>
-                        </div>
-                        <p class="project-subtitle">교육 과정 팀 프로젝트 (5인) · 백엔드 및 DB 설계 주도</p>
-                        <ul class="project-detail-list">
-                            <li>전체 서비스 <strong>DB 구조 설계 및 테이블 관계 정의</strong></li>
-                            <li>회원, 상품, 장바구니, 주문 관리 등 <strong>핵심 백엔드 로직 구현</strong></li>
-                            <li>JSP 기반 서버 사이드 로직 및 Oracle DB 연동</li>
-                            <li>팀 내 백엔드 파트 전담으로 기능 구현 및 통합 담당</li>
-                        </ul>
-                        <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">JSP</span>
-                            <span class="tech-tag">Oracle DB</span>
-                            <span class="tech-tag">Tomcat</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Education -->
-        <!-- <section class="section" id="education">
-            <div class="container">
-                <h2 class="section-title">Education</h2>
-                <div class="section-content">
-                    <div class="education-item">
-                        <div class="education-header">
-                            <h3 class="school-name">동아대학교</h3>
-                            <span class="period">2014.03 - 2020.02</span>
-                        </div>
-                        <p class="major">국문학과</p>
-                    </div>
-                    <div class="education-item">
-                        <div class="education-header">
-                            <h3 class="school-name">그린컴퓨터아카데미 부산</h3>
-                            <span class="period">2021.01 - 2021.07</span>
-                        </div>
-                        <p class="major">
-                            Java & Spring Framework 기반 백엔드 실무 과정 (900시간)
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section> -->
 
         <!-- Certifications -->
         <section class="section" id="certifications">
-            <div class="container">
-                <h2 class="section-title">Certifications</h2>
-                <div class="section-content">
-                    <div class="certification-item">
-                        <div class="certification-header">
-                            <h3 class="certification-name">정보처리기사</h3>
-                            <span class="period">2024.09</span>
-                        </div>
-                        <p class="certification-detail">한국산업인력공단</p>
+            <div class="section-header">
+                <span class="section-title">Certifications</span>
+                <div class="section-line"></div>
+            </div>
+            <div class="cert-list">
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-name">정보처리기사</div>
+                        <div class="cert-meta">한국산업인력공단</div>
                     </div>
-                    <div class="certification-item">
-                        <div class="certification-header">
-                            <h3 class="certification-name">SQL개발자(SQLD)</h3>
-                            <span class="period">2022.09</span>
-                        </div>
-                        <p class="certification-detail">한국데이터산업진흥원</p>
+                    <span class="cert-meta">2024.09</span>
+                </div>
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-name">SQL개발자 (SQLD)</div>
+                        <div class="cert-meta">한국데이터산업진흥원</div>
                     </div>
+                    <span class="cert-meta">2022.09</span>
                 </div>
             </div>
         </section>
 
-        <!-- Other Activities -->
+        <!-- Activities -->
         <section class="section" id="activities">
-            <div class="container">
-                <h2 class="section-title">Activities</h2>
-                <div class="section-content">
-                    <ul class="activity-list">
-                        <!-- <li>
-                            <strong>기술 블로그 운영</strong>
-                            <span class="activity-period">2021.01 - 현재</span>
-                            <p>개발 경험과 학습 내용을 공유하는 기술 블로그 운영</p>
-                        </li> -->
-                        <li>
-                            <strong>사이드 프로젝트 팀 활동</strong>
-                            <span class="activity-period">2023.12 - 현재</span>
-                            <p>개발자 2명으로 시작하여 현재 개발자, 디자이너, 기획자가 함께하는 팀으로 성장.
-                            <br>모바일 청첩장, OrderAndGo, HeyVoca 등 다양한 사이드 프로젝트 진행 중</p>
-                        </li>
-                    </ul>
-                </div>
+            <div class="section-header">
+                <span class="section-title">Activities</span>
+                <div class="section-line"></div>
+            </div>
+            <div class="activity-card">
+                <div class="activity-title">사이드 프로젝트 팀 빌딩 및 운영</div>
+                <div class="activity-period">2023.12 — 현재</div>
+                <p class="activity-desc">
+                    개발자 2명으로 시작해 현재 개발자 · 디자이너 · 기획자가 함께하는 팀으로 성장.
+                    모바일 청첩장, OrderAndGo, HeyVoca(앱 출시) 등 다양한 프로덕트를 직접 기획하고 개발 중.
+                    팀 리드 역할로 일정 조율, 기술 결정, 배포까지 전담.
+                </p>
             </div>
         </section>
+
+        <footer class="footer">
+            <p>이근지 · kunji1177@gmail.com · github.com/zyzyzyclaire</p>
+        </footer>
+
     </main>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 zyzyzyclaire. All rights reserved.</p>
-        </div>
-    </footer>
+<script>
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id], .hero');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    <script src="js/main.js"></script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
