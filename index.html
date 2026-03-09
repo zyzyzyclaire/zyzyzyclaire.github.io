@@ -718,13 +718,13 @@
             </div>
             <div class="nav-section">
                 <div class="nav-label">Career</div>
-                <a href="#experience" class="nav-link">경력</a>
                 <a href="#skills" class="nav-link">기술 스택</a>
+                <a href="#experience" class="nav-link">경력</a>
             </div>
             <div class="nav-section">
                 <div class="nav-label">Projects</div>
-                <a href="#products" class="nav-link">사이드 프로젝트</a>
                 <a href="#work-projects" class="nav-link">업무 프로젝트</a>
+                <a href="#products" class="nav-link">사이드 프로젝트</a>
             </div>
             <div class="nav-section">
                 <div class="nav-label">Etc</div>
@@ -758,7 +758,7 @@
                     <span class="stat-label">백엔드 개발 경력</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">109개</span>
+                    <span class="stat-value">100개+</span>
                     <span class="stat-label">REST API 엔드포인트</span>
                 </div>
                 <div class="stat">
@@ -766,16 +766,12 @@
                     <span class="stat-label">설계한 DB 테이블 수</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-value">2개</span>
+                    <span class="stat-value">1개</span>
                     <span class="stat-label">출시된 사이드 프로젝트</span>
                 </div>
             </div>
 
             <div class="hero-highlights">
-                <div class="highlight-chip">
-                    <span class="chip-icon">⚡</span>
-                    응답시간 30초 → 1초 이하 최적화
-                </div>
                 <div class="highlight-chip">
                     <span class="chip-icon">📱</span>
                     Android / iOS 앱 직접 출시
@@ -894,14 +890,140 @@
                     </div>
                     <div class="exp-role">Backend Developer</div>
                     <ul class="exp-list">
-                        <li>페이지 렌더링 성능 병목 분석 → 쿼리 최적화로 <span class="highlight-metric">응답시간 30초 → 1초 이하</span> 단축</li>
-                        <li>데이터 엑셀 출력 <span class="highlight-metric">응답시간 60초 → 5초 이하</span>로 개선</li>
-                        <li><strong>DynamoDB → MySQL</strong> 데이터베이스 마이그레이션 수행 (데이터 모델 재설계 포함)</li>
-                        <li>레거시 코드 리팩토링 및 관리자 페이지 운영 기능 개발</li>
+                        <li>데이터 엑셀 출력 <strong>성능 개선</strong></li>
+                        <li><strong>DynamoDB → MySQL</strong> 데이터베이스 마이그레이션 수행</li>
+                        <li>데이터 모델 재설계 및 마이그레이션 스크립트 작성</li>
+                        <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
+                        <li>관리자 페이지 구축 및 운영 기능 개발</li>
                     </ul>
                 </div>
 
             </div>
+        </section>
+
+        <!-- Work Projects -->
+        <section class="section" id="work-projects">
+            <div class="section-header">
+                <span class="section-title">Work Projects</span>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- 프라이머스 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">서버리스 백엔드 아키텍처 설계 및 시스템 구축</h3>
+                    <span class="project-period">2023.08 — 2024.03</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li>서비스 <strong>초기 기획 단계부터 참여</strong> — 40개 이상 테이블 데이터 모델 및 아키텍처 설계</li>
+                    <li>FastAPI 기반 <strong>109개 REST API</strong> 엔드포인트 개발 (14개 라우트 모듈)</li>
+                    <li><strong>S3 Presigned URL</strong> 기반 시간 제한 파일 접근 제어 · 벌크 삭제 최적화 (AWS 1000개 제한 대응)</li>
+                    <li><strong>Request ID 기반 요청 추적 미들웨어</strong> 구현 · Sentry 연동 프로덕션 에러 모니터링</li>
+                    <li>for 루프 내 건별 DB 조회를 루프 전 일괄 조회 후 딕셔너리 매핑으로 개선 — 반복 호출 제거로 응답 속도 단축</li>
+                    <li>path string 기반 <strong>계층형 폴더 시스템</strong> — 폴더 이동 시 하위 항목 경로 일괄 업데이트</li>
+                    <li>오디오 파일 음량 기반 구간 자동 분할 및 <strong>Google Speech API</strong> 연동 — 한·영 STT 자동 변환</li>
+                    <li><strong>복수 선택 답안 비트마스킹 인코딩</strong> — 정수 단일 컬럼에 다중 답안 압축 저장</li>
+                    <li>워크북 삭제 시 <strong>연쇄 삭제 및 참조 무결성 관리</strong> — 6단계 순차 삭제 + S3 파일 정리</li>
+                    <li><strong>시리얼 키</strong> 라이선스 발급 및 사용 추적 시스템</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">AWS Lambda</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">SQLAlchemy</span>
+                    <span class="tech-tag">AWS S3</span>
+                    <span class="tech-tag">Sentry</span>
+                </div>
+            </div>
+
+            <!-- 프라이머스 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">소셜 로그인 연동 및 인증/보안 시스템 구축</h3>
+                    <span class="project-period">2024.03 — 2024.09</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li><strong>Google · Kakao · Naver</strong> 3개 플랫폼 OAuth 소셜 로그인 연동</li>
+                    <li><strong>JWT + bcrypt</strong> 기반 인증/인가 구조 설계 (Access Token · Refresh Token 이중 구조)</li>
+                    <li>사용자 <strong>기기 등록/변경 횟수 제한</strong> — 불법 공유 방지 (월별 자동 리셋)</li>
+                    <li><strong>다국어(한/영/몽골어) 에러 메시지</strong> — JWT 토큰 내 국가 정보 기반 자동 분기</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">JWT</span>
+                    <span class="tech-tag">OAuth 2.0</span>
+                    <span class="tech-tag">bcrypt</span>
+                </div>
+            </div>
+
+            <!-- 프라이머스 3 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">관리자 시스템 — 사용자 활동 분석 대시보드</h3>
+                    <span class="project-period">2024.06 — 2024.12</span>
+                </div>
+                <p class="project-company-tag">프라이머스</p>
+                <ul class="project-list">
+                    <li><strong>8가지 핵심 지표</strong>(가입, 재방문, 문제풀이, 오답노트 등) 일별 자동 집계 시스템</li>
+                    <li>일별/주별/월별 시계열 집계 API — ISO 주 기반 그룹핑 및 월별 롤업 처리</li>
+                    <li>특정 사용자의 <strong>전체 활동 타임라인 조회</strong> — 로그인, 문제풀이, 시험 생성 등 시간순 추적</li>
+                    <li>지표별 <strong>드릴다운 API</strong> — 날짜 선택 시 해당 사용자 목록 및 활동 내역 제공</li>
+                    <li>UTC → KST 타임존 변환 처리 및 전일 대비 비교 데이터 제공</li>
+                    <li><strong>3단계 RBAC</strong> — SuperAdmin / Admin / Alba 권한 분리</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">SQLAlchemy</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">matplotlib</span>
+                </div>
+            </div>
+
+            <!-- 히어로웍스 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">서비스 성능 개선 및 렌더링 속도 최적화</h3>
+                    <span class="project-period">2022.10 — 2022.12</span>
+                </div>
+                <p class="project-company-tag">히어로웍스</p>
+                <ul class="project-list">
+                    <li>페이지 렌더링 최대 30초 소요 성능 병목 현상 분석</li>
+                    <li>비효율적인 N+1 쿼리 및 중복 데이터 처리 로직 식별</li>
+                    <li>쿼리 최적화로 <strong>응답 시간 30초 → 1초 이하</strong>로 단축</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </div>
+
+            <!-- 히어로웍스 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-name">데이터베이스 마이그레이션 (DynamoDB → MySQL)</h3>
+                    <span class="project-period">2023.01 — 2023.03</span>
+                </div>
+                <p class="project-company-tag">히어로웍스</p>
+                <ul class="project-list">
+                    <li>DynamoDB 기반 구조의 확장성 및 유지보수 한계 도출</li>
+                    <li><strong>MySQL 기반 RDB 구조</strong>로 데이터 모델 재설계</li>
+                    <li>마이그레이션 스크립트 작성 및 서비스 로직 전환</li>
+                    <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">DynamoDB</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                </div>
+            </div>
+
         </section>
 
         <!-- Side Projects (Products) -->
@@ -920,7 +1042,6 @@
                 </div>
                 <p class="project-subtitle">영어 단어 학습 앱 · Android / iOS 출시 · 백엔드 & 관리자 시스템 전담</p>
                 <ul class="project-list">
-                    <li>개발자 2인으로 시작 → 현재 <strong>개발자 · 디자이너 · 기획자</strong> 팀으로 성장</li>
                     <li><strong>전체 DB 스키마 설계</strong> — 단어-뜻-예문 관계, 사용자 학습 데이터, 북스토어 등 30개 이상 테이블</li>
                     <li>pandas 기반 <strong>엑셀 대량 업로드</strong> — 파싱 → 단어/뜻/예문 자동 분리 → 관계 테이블 일괄 INSERT</li>
                     <li><strong>Celery + Redis</strong>로 매일 정해진 시간에 FCM 푸시 알림 자동 발송</li>
@@ -956,7 +1077,6 @@
                     <li><strong>결제 시스템 DB 설계</strong> — 주문-결제-정산 흐름 (TableOrderList → Order → Payment)</li>
                     <li>더치페이 · 할인/추가요금 등 복잡한 정산 로직 처리하는 <strong>결제 API</strong> 구현</li>
                     <li>테이블 합석/이동 시 Order · TableOrderList의 table_id 일괄 업데이트</li>
-                    <li><strong>WebSocket</strong> 기반 실시간 주문 알림 · <strong>Google OAuth2</strong> 매장 로그인 연동</li>
                 </ul>
                 <div class="project-tech">
                     <span class="tech-tag">Python</span>
@@ -988,144 +1108,6 @@
                     <span class="tech-tag">Flask</span>
                 </div>
             </div>
-        </section>
-
-        <!-- Work Projects -->
-        <section class="section" id="work-projects">
-            <div class="section-header">
-                <span class="section-title">Work Projects</span>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-name">소셜 로그인 연동 및 인증/보안 시스템</h3>
-                    <span class="project-period">2024.03 — 2024.09</span>
-                </div>
-                <p class="project-company-tag">프라이머스</p>
-                <ul class="project-list">
-                    <li><strong>Google · Kakao · Naver</strong> 3개 플랫폼 OAuth 소셜 로그인 연동</li>
-                    <li><strong>JWT + bcrypt</strong> 기반 인증/인가 구조 설계 (Access Token, Refresh Token 분리)</li>
-                    <li>사용자 <strong>기기 등록/변경 횟수 제한</strong> 시스템 — 불법 공유 방지 (월별 자동 리셋)</li>
-                    <li><strong>다국어(한/영/몽골어) 에러 메시지</strong> — JWT 토큰 내 국가 정보 기반 자동 분기</li>
-                    <li>47개 이상의 커스텀 예외 클래스 계층 구조 설계</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">FastAPI</span>
-                    <span class="tech-tag">JWT</span>
-                    <span class="tech-tag">OAuth 2.0</span>
-                    <span class="tech-tag">bcrypt</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-name">서버리스 백엔드 아키텍처 설계 및 시스템 구축</h3>
-                    <span class="project-period">2023.08 — 2024.03</span>
-                </div>
-                <p class="project-company-tag">프라이머스</p>
-                <ul class="project-list">
-                    <li>서비스 <strong>초기 기획 단계부터 참여</strong> — 40개 이상 테이블 데이터 모델 및 아키텍처 설계</li>
-                    <li>FastAPI 기반 <strong>109개 REST API</strong> 엔드포인트 개발 (14개 라우트 모듈)</li>
-                    <li><strong>S3 Presigned URL</strong> 기반 시간 제한 파일 접근 제어 · 벌크 삭제 최적화 (AWS 1000개 제한 대응)</li>
-                    <li><strong>Request ID 기반 요청 추적 미들웨어</strong> 구현 · Sentry 연동으로 프로덕션 에러 모니터링</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">FastAPI</span>
-                    <span class="tech-tag">AWS Lambda</span>
-                    <span class="tech-tag">Mangum</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">AWS S3</span>
-                    <span class="tech-tag">Sentry</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-name">학습 콘텐츠 관리 및 사용자 학습 시스템</h3>
-                    <span class="project-period">2023.12 — 2024.06</span>
-                </div>
-                <p class="project-company-tag">프라이머스</p>
-                <ul class="project-list">
-                    <li>path string 기반 <strong>계층형 폴더 시스템</strong> — 폴더 이동 시 하위 항목 경로 일괄 업데이트 (14개 엔드포인트)</li>
-                    <li>태그 기반 <strong>오답노트 시스템</strong> — 틀린 문제 분류, 커스텀 순서 재풀이, 별도 정답률 추적</li>
-                    <li><strong>DIY 시험 생성</strong> — 문제 선택 → 랜덤 출제 → 자동 채점 및 점수 추적</li>
-                    <li>커스텀 <strong>PDF/오디오 뷰어</strong> — 기기별 파일 경로 분리, 페이지별 주석 저장</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">FastAPI</span>
-                    <span class="tech-tag">SQLAlchemy</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">AWS S3</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-name">관리자 시스템 — 미디어 처리 및 콘텐츠 관리</h3>
-                    <span class="project-period">2023.10 — 2024.09</span>
-                </div>
-                <p class="project-company-tag">프라이머스</p>
-                <ul class="project-list">
-                    <li><strong>오디오 자동 전사 파이프라인</strong> — pydub 무음 감지(-50dB) 후 음성 구간 추출, 한/영 이중 언어 STT 자동 변환</li>
-                    <li><strong>대용량 PDF 스트리밍 처리</strong> — 메모리 효율적 페이지 분할 및 썸네일 자동 생성 (OOM 방지)</li>
-                    <li><strong>비트 연산 기반 다중 정답 인코딩</strong> — 6가지 답안 유형을 바이너리 값으로 효율 저장</li>
-                    <li><strong>연쇄 삭제 및 참조 무결성 관리</strong> — 사용자 데이터 사전 검증 후 6단계 순차 삭제 + S3 파일 정리</li>
-                    <li><strong>시리얼 키</strong> 라이선스 발급 및 사용 추적 시스템</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">pydub</span>
-                    <span class="tech-tag">SpeechRecognition</span>
-                    <span class="tech-tag">PyPDF2</span>
-                    <span class="tech-tag">AWS S3</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-name">관리자 시스템 — 사용자 활동 분석 대시보드</h3>
-                    <span class="project-period">2024.06 — 2024.12</span>
-                </div>
-                <p class="project-company-tag">프라이머스</p>
-                <ul class="project-list">
-                    <li><strong>8가지 핵심 지표</strong>(가입, 재방문, 문제풀이, 오답노트, 시험 등) 일별 자동 집계 시스템</li>
-                    <li>일별/주별/월별 시계열 집계 API — ISO 주 기반 그룹핑 및 월별 롤업 처리</li>
-                    <li>특정 사용자의 <strong>전체 활동 타임라인 조회</strong> — 로그인, 문제풀이, 시험 생성 등 시간순 추적</li>
-                    <li><strong>3단계 RBAC</strong> — SuperAdmin / Admin / Alba 권한 분리</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">SQLAlchemy</span>
-                    <span class="tech-tag">MySQL</span>
-                    <span class="tech-tag">matplotlib</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-name">데이터베이스 마이그레이션 · 서비스 성능 개선</h3>
-                    <span class="project-period">2022.10 — 2023.03</span>
-                </div>
-                <p class="project-company-tag">히어로웍스</p>
-                <ul class="project-list">
-                    <li>DynamoDB 확장성 한계 → <strong>MySQL 기반 RDB 구조로 재설계</strong> 및 마이그레이션 수행</li>
-                    <li>N+1 쿼리 · 중복 처리 로직 식별 → 쿼리 최적화로 <span class="highlight-metric">응답시간 30초 → 1초 이하</span> 달성</li>
-                    <li>레거시 코드 리팩토링 및 deprecated API 정리</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">DynamoDB</span>
-                    <span class="tech-tag">MySQL</span>
-                </div>
-            </div>
-
         </section>
 
         <!-- Certifications -->
@@ -1163,8 +1145,7 @@
                 <div class="activity-period">2023.12 — 현재</div>
                 <p class="activity-desc">
                     개발자 2명으로 시작해 현재 개발자 · 디자이너 · 기획자가 함께하는 팀으로 성장.
-                    모바일 청첩장, OrderAndGo, HeyVoca(앱 출시) 등 다양한 프로덕트를 직접 기획하고 개발 중.
-                    팀 리드 역할로 일정 조율, 기술 결정, 배포까지 전담.
+                    모바일 청첩장, OrderAndGo, HeyVoca(앱 출시) 등 다양한 프로덕트를 함께 기획하고 개발 중.
                 </p>
             </div>
         </section>
